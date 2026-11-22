@@ -1,0 +1,17 @@
+diff --git a/HarborSim/Ships/PassengerShip.cs b/HarborSim/Ships/PassengerShip.cs
+index 127c8d9..66831dd 100644
+--- a/HarborSim/Ships/PassengerShip.cs
++++ b/HarborSim/Ships/PassengerShip.cs
+@@ -40,6 +40,12 @@ namespace HarborSim
+                 }
+ 
+                 AddStaffWithLeader(staff, SkillType.PassengerCoordinator, count, leaderLevel);
++
++                // Sicherheitsregel: über 1500 Passagiere zusätzlich ein Experten-Lotse
++                if (_passengerNumber > 1500)
++                {
++                    staff.Add(SkillType.Pilot, SkillLevel.Expert, 1);
++                }
+                 return staff;
+             }
+         }

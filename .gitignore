@@ -10,3 +10,5 @@ tests/**/actual.txt
 *.png
 *.zip
 __pycache__/
+uebungspruefungen/**/actual.txt
+!uebungspruefungen/**/Angabe.pdf

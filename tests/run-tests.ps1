@@ -7,13 +7,20 @@
 #   fehlende-dateien.txt     = optional, diese Daten-Dateien werden vorher gelöscht
 # Das Startdatum ist fest (Montag, 23.11.2026), damit die Ausgabe immer gleich ist.
 # Aufruf: powershell -ExecutionPolicy Bypass -File tests/run-tests.ps1
+# Optional: -Projekt <Ordner> testet eine andere Kopie des Projekts,
+#           -Szenarien <Ordner> nimmt andere Szenarien (z. B. die einer Übungsaufgabe).
+
+param(
+    [string]$Projekt = (Split-Path -Parent $PSScriptRoot),
+    [string]$Szenarien = (Join-Path $PSScriptRoot 'scenarios')
+)
 
 $ErrorActionPreference = 'Stop'
 $StartDate = '2026-11-23'
 
-$root = Split-Path -Parent $PSScriptRoot
-$binDir = Join-Path $PSScriptRoot '.bin'
-$scenarioDir = Join-Path $PSScriptRoot 'scenarios'
+$root = (Resolve-Path -LiteralPath $Projekt).Path
+$binDir = Join-Path $root 'tests/.bin'
+$scenarioDir = (Resolve-Path -LiteralPath $Szenarien).Path
 
 dotnet build (Join-Path $root 'HarborSim/HarborSim.csproj') -o $binDir --nologo -v q | Out-Null
 if ($LASTEXITCODE -ne 0) {
