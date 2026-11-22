@@ -1,0 +1,64 @@
+HarborSim – Hafensimulation
+10 Schiffe und 20 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+3  Schiffe nach Name
+0  Beenden
+Auswahl: 3
+
+=== Schiffe nach Name ===
+  #1 Baltic Venture, 92 m lang, 16,2 m breit, 5,4 m Tiefgang, Frachtschiff mit 120 Containern
+  #6 Coastal Breeze, 108 m lang, 18,2 m breit, 4,8 m Tiefgang, Passagierschiff mit 160 Passagieren
+  #3 Emerald Trader, 194 m lang, 28,7 m breit, 8,8 m Tiefgang, Frachtschiff mit 650 Containern
+  #10 Grand Horizon, 316 m lang, 44,6 m breit, 8,9 m Tiefgang, Passagierschiff mit 3200 Passagieren
+  #5 Grand Meridian, 292 m lang, 42,6 m breit, 12,1 m Tiefgang, Frachtschiff mit 1800 Containern
+  #9 Northern Crown, 268 m lang, 37,4 m breit, 8,1 m Tiefgang, Passagierschiff mit 1800 Passagieren
+  #4 Oceanic Horizon, 244 m lang, 34,8 m breit, 10,4 m Tiefgang, Frachtschiff mit 1100 Containern
+  #8 Royal Voyager, 214 m lang, 29,8 m breit, 7 m Tiefgang, Passagierschiff mit 900 Passagieren
+  #7 Seaside Spirit, 156 m lang, 23,5 m breit, 5,9 m Tiefgang, Passagierschiff mit 420 Passagieren
+  #2 Silver Mariner, 146 m lang, 22,8 m breit, 7,1 m Tiefgang, Frachtschiff mit 340 Containern
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+3  Schiffe nach Name
+0  Beenden
+Auswahl: 1
+
+=== Verfügbarkeit ändern ===
+1  Mitarbeiter
+2  Schiffe
+3  Docks (aktuell 3)
+0  Zurück
+Auswahl: 2
+
+=== Schiffe ===
+ 1  Baltic Venture (92 m) – verfügbar
+ 2  Silver Mariner (146 m) – verfügbar
+ 3  Emerald Trader (194 m) – verfügbar
+ 4  Oceanic Horizon (244 m) – verfügbar
+ 5  Grand Meridian (292 m) – verfügbar
+ 6  Coastal Breeze (108 m) – verfügbar
+ 7  Seaside Spirit (156 m) – verfügbar
+ 8  Royal Voyager (214 m) – verfügbar
+ 9  Northern Crown (268 m) – verfügbar
+10  Grand Horizon (316 m) – verfügbar
+Nummer zum Umschalten (0 = zurück): 0
+
+=== Verfügbarkeit ändern ===
+1  Mitarbeiter
+2  Schiffe
+3  Docks (aktuell 3)
+0  Zurück
+Auswahl: 0
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+3  Schiffe nach Name
+0  Beenden
+Auswahl: 0
+
+Programm beendet.

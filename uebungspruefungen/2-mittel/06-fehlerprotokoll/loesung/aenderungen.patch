@@ -1,0 +1,49 @@
+diff --git a/HarborSim/Program.cs b/HarborSim/Program.cs
+index f7265d6..3a539a7 100644
+--- a/HarborSim/Program.cs
++++ b/HarborSim/Program.cs
+@@ -15,6 +15,8 @@ namespace HarborSim
+         // Die CSV-Dateien werden beim Build neben die .exe kopiert (siehe HarborSim.csproj)
+         private static readonly string ShipsPath = Path.Combine(AppContext.BaseDirectory, "Data", "ships.csv");
+         private static readonly string WorkersPath = Path.Combine(AppContext.BaseDirectory, "Data", "workers.csv");
++        // Protokoll der übersprungenen Zeilen, liegt neben der .exe
++        private static readonly string ErrorLogPath = Path.Combine(AppContext.BaseDirectory, "fehler.log");
+ 
+         private const int DefaultDockCount = 3;
+         private const int MaxDockCount = 10;
+@@ -30,6 +32,8 @@ namespace HarborSim
+         private static Dictionary<string, bool> _workerAvailable = new Dictionary<string, bool>();
+         private static int _dockCount = DefaultDockCount;
+         private static DateTime _startTime;
++        // Meldungen der übersprungenen Zeilen, für fehler.log gesammelt
++        private static List<string> _skippedLines = new List<string>();
+ 
+         static void Main(string[] args)
+         {
+@@ -53,6 +57,15 @@ namespace HarborSim
+             Console.WriteLine("HarborSim – Hafensimulation");
+             Console.WriteLine($"{_menuShips.Count} Schiffe und {_menuWorkers.Count} Mitarbeiter eingelesen.");
+ 
++            // Nur das erste Einlesen protokollieren: die Simulation liest dieselben Dateien
++            // noch einmal ein und würde jede Meldung verdoppeln.
++            // WriteAllLines überschreibt die Datei, ohne Fehler bleibt sie leer.
++            File.WriteAllLines(ErrorLogPath, _skippedLines);
++            if (_skippedLines.Count > 0)
++            {
++                Console.WriteLine($"{_skippedLines.Count} fehlerhafte Zeilen in fehler.log protokolliert.");
++            }
++
+             bool running = true;
+             while (running)
+             {
+@@ -384,7 +397,9 @@ namespace HarborSim
+         // Zeilennummer wie im Editor: Index 0 ist Zeile 1
+         private static void PrintSkippedLine(string path, int index, string reason)
+         {
+-            Console.WriteLine($"Zeile {index + 1} in {Path.GetFileName(path)} übersprungen: {reason}");
++            string message = $"Zeile {index + 1} in {Path.GetFileName(path)} übersprungen: {reason}";
++            Console.WriteLine(message);
++            _skippedLines.Add(message);
+         }
+ 
+         // Macht aus einer CSV-Zeile das passende Schiffsobjekt.

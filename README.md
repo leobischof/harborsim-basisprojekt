@@ -26,7 +26,8 @@ Tests (PowerShell): `./tests/run-tests.ps1`. Das Skript baut das Programm, spiel
 `tests/scenarios/` über `input.txt` durch und vergleicht die Ausgabe mit `expected.txt`.
 Liegen im Szenario-Ordner eigene `ships.csv`/`workers.csv`, ersetzen sie für diesen Lauf die normalen
 Daten; `fehlende-dateien.txt` listet Daten-Dateien, die vorher gelöscht werden (siehe `kaputte-csv`,
-`fehlende-datei`).
+`fehlende-datei`). Jede Datei in einem Unterordner `erwartete-dateien/` muss nach dem Lauf genau so
+neben dem Programm liegen (für Aufgaben, in denen das Programm selbst eine Datei schreibt).
 Mit `-Projekt <Ordner>` und `-Szenarien <Ordner>` testet das Skript eine andere Projektkopie bzw. andere
 Szenarien; das nutzt `uebungspruefungen/pruefe-loesung.ps1`.
 

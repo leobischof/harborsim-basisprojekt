@@ -13,7 +13,8 @@
 #   Gegenprobe:
 #     ... pruefe-loesung.ps1 1-leicht/01-typ-gross-klein -OhneLoesung
 #     -> unverändertes Basisprojekt; die Szenarien MÜSSEN hier scheitern,
-#        sonst prüfen sie die Aufgabe gar nicht.
+#        sonst prüfen sie die Aufgabe gar nicht (außer reinen Kontroll-Szenarien,
+#        die nur zeigen, dass das Bisherige weiter funktioniert).
 
 param(
     [Parameter(Mandatory = $true)][string]$Aufgabe,

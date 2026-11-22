@@ -38,17 +38,18 @@ a { color: #1f4e79; }
 
 def inline(text):
     """Code, Fett und Links innerhalb einer Zeile."""
-    parts = re.split(r"(`[^`]+`)", text)
-    result = []
-    for part in parts:
-        if part.startswith("`") and part.endswith("`") and len(part) > 1:
-            result.append("<code>" + html.escape(part[1:-1]) + "</code>")
-            continue
-        part = html.escape(part)
-        part = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", part)
-        part = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', part)
-        result.append(part)
-    return "".join(result)
+    # Codestücke erst durch Platzhalter ersetzen: so wirkt **fett** auch um `code` herum,
+    # und ein ** im Code bleibt unangetastet.
+    codes = []
+
+    def keep_code(match):
+        codes.append("<code>" + html.escape(match.group(1)) + "</code>")
+        return f"\x00{len(codes) - 1}\x00"
+
+    text = html.escape(re.sub(r"`([^`]+)`", keep_code, text))
+    text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
+    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', text)
+    return re.sub(r"\x00(\d+)\x00", lambda match: codes[int(match.group(1))], text)
 
 
 def table(rows):

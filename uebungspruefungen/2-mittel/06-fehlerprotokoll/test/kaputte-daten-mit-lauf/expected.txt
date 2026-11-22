@@ -1,0 +1,68 @@
+Hinweis: ships.csv hat keine Kopfzeile, Zeile 1 wird als Daten gelesen.
+Zeile 2 in ships.csv übersprungen: Name "Baltic Venture" kommt doppelt vor
+Zeile 3 in ships.csv übersprungen: unbekannter Schiffstyp "Tanker"
+Zeile 4 in ships.csv übersprungen: zu wenige Spalten (erwartet: Name,Type,Length,Beam,Draft,Val1)
+Zeile 5 in ships.csv übersprungen: Negativ: Länge, Breite und Tiefgang müssen größer als 0 sein.
+Zeile 6 in ships.csv übersprungen: Length "abc" ist keine Zahl
+Zeile 8 in ships.csv übersprungen: Der Name eines Schiffs darf nicht leer sein.
+Zeile 3 in workers.csv übersprungen: Name "Adrian" kommt doppelt vor
+Zeile 4 in workers.csv übersprungen: unbekannter Skilltyp "Cook"
+Zeile 5 in workers.csv übersprungen: unbekanntes Level 5 (erlaubt: 0, 1, 2)
+Zeile 6 in workers.csv übersprungen: SkillLevel "x" ist keine ganze Zahl
+Zeile 7 in workers.csv übersprungen: zu wenige Spalten (erwartet: Name,SkillType,SkillLevel)
+HarborSim – Hafensimulation
+2 Schiffe und 2 Mitarbeiter eingelesen.
+11 fehlerhafte Zeilen in fehler.log protokolliert.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 2
+Hinweis: ships.csv hat keine Kopfzeile, Zeile 1 wird als Daten gelesen.
+Zeile 2 in ships.csv übersprungen: Name "Baltic Venture" kommt doppelt vor
+Zeile 3 in ships.csv übersprungen: unbekannter Schiffstyp "Tanker"
+Zeile 4 in ships.csv übersprungen: zu wenige Spalten (erwartet: Name,Type,Length,Beam,Draft,Val1)
+Zeile 5 in ships.csv übersprungen: Negativ: Länge, Breite und Tiefgang müssen größer als 0 sein.
+Zeile 6 in ships.csv übersprungen: Length "abc" ist keine Zahl
+Zeile 8 in ships.csv übersprungen: Der Name eines Schiffs darf nicht leer sein.
+Zeile 3 in workers.csv übersprungen: Name "Adrian" kommt doppelt vor
+Zeile 4 in workers.csv übersprungen: unbekannter Skilltyp "Cook"
+Zeile 5 in workers.csv übersprungen: unbekanntes Level 5 (erlaubt: 0, 1, 2)
+Zeile 6 in workers.csv übersprungen: SkillLevel "x" ist keine ganze Zahl
+Zeile 7 in workers.csv übersprungen: zu wenige Spalten (erwartet: Name,SkillType,SkillLevel)
+
+=== Übersicht ===
+Start: Montag, 23.11.2026 06:00
+Docks: 3
+Schiffe, sortiert nach Länge:
+  #3 Baltic Venture, 92 m lang, 16,2 m breit, 5,4 m Tiefgang, Frachtschiff mit 120 Containern
+  #4 Aurora, 180 m lang, 28 m breit, 7 m Tiefgang, Passagierschiff mit 900 Passagieren
+Mitarbeiter:
+  #3 Adrian (DockWorker, Expert)
+  #4 Fritz (Pilot, Qualified)
+
+=== Simulation ===
+
+Simulation blockiert: Keiner der offenen Tasks kann gestartet werden.
+Nicht durchführbare Tasks:
+  Docking   | Baltic Venture
+  Loading   | Baltic Venture
+  Undocking | Baltic Venture
+  Docking   | Aurora
+  Loading   | Aurora
+  Undocking | Aurora
+
+=== Zusammenfassung ===
+Ende der Simulation: Montag, 23.11.2026 06:00
+Dauer: 0 h 0 min
+Abgeschlossene Tasks: 0 von 6
+Nicht durchgeführte Tasks: 6 (Liste siehe oben)
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 0
+
+Programm beendet.
