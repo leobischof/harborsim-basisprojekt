@@ -1,0 +1,62 @@
+HarborSim – Hafensimulation
+2 Schiffe und 6 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 2
+
+=== Übersicht ===
+Start: Montag, 23.11.2026 06:00
+Docks: 3
+Schiffe, sortiert nach Länge:
+  #3 Ida, 50 m lang, 10 m breit, 4 m Tiefgang, Frachtschiff mit 50 Containern
+  #4 Jola, 50 m lang, 10 m breit, 4 m Tiefgang, Frachtschiff mit 50 Containern
+Mitarbeiter:
+  #7 Quirin (DockWorker, Qualified)
+  #8 Anna (DockWorker, Beginner)
+  #9 Bert (DockWorker, Beginner)
+  #10 Cleo (DockWorker, Beginner)
+  #11 Dora (DockWorker, Beginner)
+  #12 Kurt (CraneOperator, Beginner)
+
+=== Simulation ===
+06:00  START  Docking   | Ida | 06:00-06:30 | Anna, Bert, Cleo
+       -> Ida liegt an Dock 1
+06:30  ENDE   Docking   | Ida | 06:00-06:30 | Anna, Bert, Cleo
+06:30  START  Loading   | Ida | 06:30-07:05 | Anna, Kurt
+06:30  START  Docking   | Jola | 06:30-07:00 | Bert, Cleo, Dora
+       -> Jola liegt an Dock 2
+07:00  ENDE   Docking   | Jola | 06:30-07:00 | Bert, Cleo, Dora
+07:05  ENDE   Loading   | Ida | 06:30-07:05 | Anna, Kurt
+       -> Ida: 50 Container verladen
+07:05  START  Bunkering | Ida | 07:05-07:45 | Anna, Quirin
+07:05  START  Loading   | Jola | 07:05-07:40 | Bert, Kurt
+07:40  ENDE   Loading   | Jola | 07:05-07:40 | Bert, Kurt
+       -> Jola: 50 Container verladen
+07:45  ENDE   Bunkering | Ida | 07:05-07:45 | Anna, Quirin
+       -> Ida: Treibstoff gebunkert
+07:45  START  Undocking | Ida | 07:45-08:05 | Anna, Bert, Cleo
+07:45  START  Bunkering | Jola | 07:45-08:25 | Dora, Quirin
+08:05  ENDE   Undocking | Ida | 07:45-08:05 | Anna, Bert, Cleo
+       -> Dock 1 ist wieder frei
+08:25  ENDE   Bunkering | Jola | 07:45-08:25 | Dora, Quirin
+       -> Jola: Treibstoff gebunkert
+08:25  START  Undocking | Jola | 08:25-08:45 | Anna, Bert, Cleo
+08:45  ENDE   Undocking | Jola | 08:25-08:45 | Anna, Bert, Cleo
+       -> Dock 2 ist wieder frei
+
+=== Zusammenfassung ===
+Ende der Simulation: Montag, 23.11.2026 08:45
+Dauer: 2 h 45 min
+Abgeschlossene Tasks: 8 von 8
+Alle Tasks wurden durchgeführt.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 0
+
+Programm beendet.

@@ -1,0 +1,159 @@
+HarborSim – Hafensimulation
+10 Schiffe und 20 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 1
+
+=== Verfügbarkeit ändern ===
+1  Mitarbeiter
+2  Schiffe
+3  Docks (aktuell 3)
+0  Zurück
+Auswahl: 3
+Anzahl der Docks (1-10): 1
+
+=== Verfügbarkeit ändern ===
+1  Mitarbeiter
+2  Schiffe
+3  Docks (aktuell 1)
+0  Zurück
+Auswahl: 0
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 2
+
+=== Übersicht ===
+Start: Montag, 23.11.2026 06:00
+Docks: 1
+Schiffe, sortiert nach Länge:
+  #11 Baltic Venture, 92 m lang, 16,2 m breit, 5,4 m Tiefgang, Frachtschiff mit 120 Containern
+  #16 Coastal Breeze, 108 m lang, 18,2 m breit, 4,8 m Tiefgang, Passagierschiff mit 160 Passagieren
+  #12 Silver Mariner, 146 m lang, 22,8 m breit, 7,1 m Tiefgang, Frachtschiff mit 340 Containern
+  #17 Seaside Spirit, 156 m lang, 23,5 m breit, 5,9 m Tiefgang, Passagierschiff mit 420 Passagieren
+  #13 Emerald Trader, 194 m lang, 28,7 m breit, 8,8 m Tiefgang, Frachtschiff mit 650 Containern
+  #18 Royal Voyager, 214 m lang, 29,8 m breit, 7 m Tiefgang, Passagierschiff mit 900 Passagieren
+  #14 Oceanic Horizon, 244 m lang, 34,8 m breit, 10,4 m Tiefgang, Frachtschiff mit 1100 Containern
+  #19 Northern Crown, 268 m lang, 37,4 m breit, 8,1 m Tiefgang, Passagierschiff mit 1800 Passagieren
+  #15 Grand Meridian, 292 m lang, 42,6 m breit, 12,1 m Tiefgang, Frachtschiff mit 1800 Containern
+  #20 Grand Horizon, 316 m lang, 44,6 m breit, 8,9 m Tiefgang, Passagierschiff mit 3200 Passagieren
+Mitarbeiter:
+  #21 Adrian (DockWorker, Expert)
+  #22 Bianca (DockWorker, Qualified)
+  #23 Caleb (DockWorker, Qualified)
+  #24 Diana (DockWorker, Qualified)
+  #25 Elias (DockWorker, Beginner)
+  #26 Freya (DockWorker, Beginner)
+  #27 Gabriel (DockWorker, Beginner)
+  #28 Helena (DockWorker, Beginner)
+  #29 Isaac (DockWorker, Beginner)
+  #30 Linda (Pilot, Qualified)
+  #31 Martin (Pilot, Expert)
+  #32 Nora (CraneOperator, Expert)
+  #33 Oliver (CraneOperator, Beginner)
+  #34 Petra (CraneOperator, Beginner)
+  #35 Samuel (CraneOperator, Qualified)
+  #36 Tina (PassengerCoordinator, Expert)
+  #37 Ulrich (PassengerCoordinator, Beginner)
+  #38 Thomas (PassengerCoordinator, Beginner)
+  #39 Vera (PassengerCoordinator, Beginner)
+  #40 Jana (PassengerCoordinator, Beginner)
+
+=== Simulation ===
+06:00  START  Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+       -> Baltic Venture liegt an Dock 1
+06:30  ENDE   Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+06:30  START  Loading   | Baltic Venture | 06:30-07:12 | Elias, Bianca, Oliver
+07:12  ENDE   Loading   | Baltic Venture | 06:30-07:12 | Elias, Bianca, Oliver
+       -> Baltic Venture: 120 Container verladen
+07:12  START  Bunkering | Baltic Venture | 07:12-07:52 | Elias, Bianca
+07:52  ENDE   Bunkering | Baltic Venture | 07:12-07:52 | Elias, Bianca
+       -> Baltic Venture: Treibstoff gebunkert
+07:52  START  Undocking | Baltic Venture | 07:52-08:12 | Elias, Freya, Gabriel
+08:12  ENDE   Undocking | Baltic Venture | 07:52-08:12 | Elias, Freya, Gabriel
+       -> Dock 1 ist wieder frei
+08:12  START  Docking   | Silver Mariner | 08:12-08:42 | Linda, Elias, Freya, Gabriel
+       -> Silver Mariner liegt an Dock 1
+08:42  ENDE   Docking   | Silver Mariner | 08:12-08:42 | Linda, Elias, Freya, Gabriel
+08:42  START  Loading   | Silver Mariner | 08:42-09:46 | Elias, Freya, Bianca, Oliver
+09:46  ENDE   Loading   | Silver Mariner | 08:42-09:46 | Elias, Freya, Bianca, Oliver
+       -> Silver Mariner: 340 Container verladen
+09:46  START  Bunkering | Silver Mariner | 09:46-10:26 | Elias, Bianca
+10:26  ENDE   Bunkering | Silver Mariner | 09:46-10:26 | Elias, Bianca
+       -> Silver Mariner: Treibstoff gebunkert
+10:26  START  Undocking | Silver Mariner | 10:26-10:46 | Linda, Elias, Freya, Gabriel
+10:46  ENDE   Undocking | Silver Mariner | 10:26-10:46 | Linda, Elias, Freya, Gabriel
+       -> Dock 1 ist wieder frei
+10:46  START  Docking   | Emerald Trader | 10:46-11:16 | Linda, Elias, Freya, Gabriel
+       -> Emerald Trader liegt an Dock 1
+11:16  ENDE   Docking   | Emerald Trader | 10:46-11:16 | Linda, Elias, Freya, Gabriel
+11:16  START  Loading   | Emerald Trader | 11:16-12:51 | Elias, Freya, Gabriel, Adrian, Oliver, Samuel
+12:51  ENDE   Loading   | Emerald Trader | 11:16-12:51 | Elias, Freya, Gabriel, Adrian, Oliver, Samuel
+       -> Emerald Trader: 650 Container verladen
+12:51  START  Bunkering | Emerald Trader | 12:51-13:31 | Elias, Bianca
+13:31  ENDE   Bunkering | Emerald Trader | 12:51-13:31 | Elias, Bianca
+       -> Emerald Trader: Treibstoff gebunkert
+13:31  START  Undocking | Emerald Trader | 13:31-13:51 | Linda, Elias, Freya, Gabriel
+13:51  ENDE   Undocking | Emerald Trader | 13:31-13:51 | Linda, Elias, Freya, Gabriel
+       -> Dock 1 ist wieder frei
+13:51  START  Docking   | Oceanic Horizon | 13:51-14:21 | Martin, Elias, Freya, Gabriel
+       -> Oceanic Horizon liegt an Dock 1
+14:21  ENDE   Docking   | Oceanic Horizon | 13:51-14:21 | Martin, Elias, Freya, Gabriel
+14:21  START  Loading   | Oceanic Horizon | 14:21-16:41 | Elias, Freya, Gabriel, Helena, Adrian, Oliver, Petra, Nora
+16:41  ENDE   Loading   | Oceanic Horizon | 14:21-16:41 | Elias, Freya, Gabriel, Helena, Adrian, Oliver, Petra, Nora
+       -> Oceanic Horizon: 1100 Container verladen
+16:41  START  Bunkering | Oceanic Horizon | 16:41-17:21 | Elias, Bianca
+17:21  ENDE   Bunkering | Oceanic Horizon | 16:41-17:21 | Elias, Bianca
+       -> Oceanic Horizon: Treibstoff gebunkert
+17:21  START  Undocking | Oceanic Horizon | 17:21-17:41 | Martin, Elias, Freya, Gabriel
+17:41  ENDE   Undocking | Oceanic Horizon | 17:21-17:41 | Martin, Elias, Freya, Gabriel
+       -> Dock 1 ist wieder frei
+17:41  START  Docking   | Grand Meridian | 17:41-18:11 | Martin, Elias, Freya, Gabriel
+       -> Grand Meridian liegt an Dock 1
+18:11  ENDE   Docking   | Grand Meridian | 17:41-18:11 | Martin, Elias, Freya, Gabriel
+
+Simulation blockiert: Keiner der offenen Tasks kann gestartet werden.
+Nicht durchführbare Tasks:
+  Loading   | Grand Meridian
+  Bunkering | Grand Meridian
+  Undocking | Grand Meridian
+  Docking   | Coastal Breeze
+  Loading   | Coastal Breeze
+  Bunkering | Coastal Breeze
+  Undocking | Coastal Breeze
+  Docking   | Seaside Spirit
+  Loading   | Seaside Spirit
+  Bunkering | Seaside Spirit
+  Undocking | Seaside Spirit
+  Docking   | Royal Voyager
+  Loading   | Royal Voyager
+  Bunkering | Royal Voyager
+  Undocking | Royal Voyager
+  Docking   | Northern Crown
+  Loading   | Northern Crown
+  Bunkering | Northern Crown
+  Undocking | Northern Crown
+  Docking   | Grand Horizon
+  Loading   | Grand Horizon
+  Bunkering | Grand Horizon
+  Undocking | Grand Horizon
+
+=== Zusammenfassung ===
+Ende der Simulation: Montag, 23.11.2026 18:11
+Dauer: 12 h 11 min
+Abgeschlossene Tasks: 17 von 40
+Nicht durchgeführte Tasks: 23 (Liste siehe oben)
+Noch angedockt: Grand Meridian
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 0
+
+Programm beendet.
