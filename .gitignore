@@ -9,3 +9,4 @@ tests/**/actual.txt
 *.pdf
 *.png
 *.zip
+__pycache__/
