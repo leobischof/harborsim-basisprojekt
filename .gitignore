@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+.vscode/
+.idea/
+tests/.bin/
+tests/**/actual.txt
+*.user
+*.pdf
+*.png
+*.zip
