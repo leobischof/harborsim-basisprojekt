@@ -1,0 +1,41 @@
+# Bei jedem Push auf main: Kommentare entfernen, bauen und das Ergebnis
+# in den Branch "ohne-kommentare" schreiben (wird jedes Mal komplett ersetzt).
+name: ohne-kommentare
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Syntax-Index in der README prüfen
+        run: python3 tools/check_syntax_index.py
+
+      - name: Kommentare entfernen
+        run: python3 tools/strip_comments.py "$RUNNER_TEMP/ohne-kommentare"
+
+      - name: Kommentarfreie Fassung bauen
+        run: dotnet build "$RUNNER_TEMP/ohne-kommentare/HarborSim/HarborSim.csproj"
+
+      - name: In den Branch ohne-kommentare schreiben
+        working-directory: ${{ runner.temp }}/ohne-kommentare
+        run: |
+          rm -rf HarborSim/bin HarborSim/obj
+          git init -q -b ohne-kommentare
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Kommentarfreie Fassung von ${GITHUB_SHA::7}"
+          git push --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ohne-kommentare
