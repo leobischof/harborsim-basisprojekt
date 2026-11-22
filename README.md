@@ -22,10 +22,14 @@ In Zed: Terminal öffnen (`` Ctrl+` ``) und den Befehl im Repo-Ordner eingeben.
 
 Tests (PowerShell): `./tests/run-tests.ps1`. Das Skript baut das Programm, spielt jedes Szenario in
 `tests/scenarios/` über `input.txt` durch und vergleicht die Ausgabe mit `expected.txt`.
+Liegen im Szenario-Ordner eigene `ships.csv`/`workers.csv`, ersetzen sie für diesen Lauf die normalen
+Daten; `fehlende-dateien.txt` listet Daten-Dateien, die vorher gelöscht werden (siehe `kaputte-csv`,
+`fehlende-datei`).
 
 Kommentarfreie Fassung lokal erzeugen: `python tools/strip_comments.py ../harborsim-ohne-kommentare`
 
 Syntax-Index prüfen (stimmen alle Datei:Zeile-Angaben unten noch?): `python tools/check_syntax_index.py`
+(mit `--fix` werden verrutschte Zeilennummern automatisch korrigiert)
 
 ## Aufbau
 
@@ -84,7 +88,8 @@ Schiff, das angelegt hat, aber nicht beladen werden kann, bleibt angedockt und b
 ändern, Simulation starten (beliebig oft), Beenden. Ungültige Eingaben werden abgewiesen.
 
 **Fehler:** Fehlt eine CSV-Datei oder ist eine Zeile kaputt (keine Zahl, unbekannter Schiffstyp,
-unbekannter Skilltyp oder Level), gibt es eine Meldung und die Zeile wird übersprungen.
+unbekannter Skilltyp oder Level, Name doppelt), gibt es eine Meldung und die Zeile wird übersprungen.
+Fehlt die Kopfzeile, wird schon Zeile 1 als Datensatz gelesen und ein Hinweis ausgegeben.
 
 ### Ergebnis mit den Original-Daten
 
@@ -138,8 +143,8 @@ der Commit zeigt, in welchem Schritt die Stelle entstanden ist.
 | 2D-Array Zugriff | `m[i][j]` | [SkillMatrix.cs:38](HarborSim/Staff/SkillMatrix.cs#L38) | `_matrix[(int)skillType, (int)skillLevel] += count;` | e9f3933 |
 | enum | `class SkillType(Enum)` | [SkillType.cs:7](HarborSim/Staff/SkillType.cs#L7) | `public enum SkillType` | 2b62f87 |
 | alle Werte eines enums | `list(SkillType)` | [StaffPool.cs:32](HarborSim/Staff/StaffPool.cs#L32) | `foreach (SkillType skillType in Enum.GetValues(typeof(SkillType)))` | a492597 |
-| Zahl → enum | `SkillLevel(2)` | [Program.cs:404](HarborSim/Program.cs#L404) | `(SkillLevel)level` | 0872463 |
-| Text zerlegen | `line.split(",")` | [Program.cs:354](HarborSim/Program.cs#L354) | `line.Split(',')` | 0872463 |
+| Zahl → enum | `SkillLevel(2)` | [Program.cs:444](HarborSim/Program.cs#L444) | `(SkillLevel)level` | 0872463 |
+| Text zerlegen | `line.split(",")` | [Program.cs:394](HarborSim/Program.cs#L394) | `line.Split(',')` | 0872463 |
 
 ### UE05 · Methoden, Vererbung
 
@@ -178,16 +183,16 @@ der Commit zeigt, in welchem Schritt die Stelle entstanden ist.
 
 | Thema | Python | Fundstelle | Code | Commit |
 | --- | --- | --- | --- | --- |
-| try / catch | `try: ... except` | [Program.cs:280](HarborSim/Program.cs#L280) | `try` | b00b27d |
-| bestimmte Exception fangen | `except ValueError` | [Program.cs:284](HarborSim/Program.cs#L284) | `catch (FormatException e)` | b00b27d |
-| Datei-Fehler fangen | `except OSError` | [Program.cs:333](HarborSim/Program.cs#L333) | `catch (IOException e)` | b00b27d |
-| Datei lesen | `open(p).read().splitlines()` | [Program.cs:330](HarborSim/Program.cs#L330) | `File.ReadAllLines(path)` | b00b27d |
+| try / catch | `try: ... except` | [Program.cs:281](HarborSim/Program.cs#L281) | `try` | b00b27d |
+| bestimmte Exception fangen | `except ValueError` | [Program.cs:288](HarborSim/Program.cs#L288) | `catch (FormatException e)` | b00b27d |
+| Datei-Fehler fangen | `except OSError` | [Program.cs:346](HarborSim/Program.cs#L346) | `catch (IOException e)` | b00b27d |
+| Datei lesen | `open(p).read().splitlines()` | [Program.cs:338](HarborSim/Program.cs#L338) | `File.ReadAllLines(path)` | b00b27d |
 | Exception werfen | `raise ValueError(...)` | [Ship.cs:41](HarborSim/Ships/Ship.cs#L41) | `throw new ArgumentException("Der Name` | b00b27d |
 | ungültiger Zustand | `raise RuntimeError` | [Ship.cs:129](HarborSim/Ships/Ship.cs#L129) | `throw new InvalidOperationException(` | 2476bc9 |
 | TryParse statt Absturz | `try: int(s)` | [Program.cs:130](HarborSim/Program.cs#L130) | `int.TryParse(line.Trim(), out number)` | b00b27d |
-| Zahl kulturunabhängig lesen | `float("16.2")` | [Program.cs:414](HarborSim/Program.cs#L414) | `CultureInfo.InvariantCulture, out value` | b00b27d |
+| Zahl kulturunabhängig lesen | `float("16.2")` | [Program.cs:454](HarborSim/Program.cs#L454) | `CultureInfo.InvariantCulture, out value` | b00b27d |
 | Datum mit Format lesen | `strptime` | [Program.cs:92](HarborSim/Program.cs#L92) | `DateTime.TryParseExact(args[0], "yyyy-MM-dd"` | b00b27d |
-| gibt es den enum-Namen? | `in SkillType.__members__` | [Program.cs:391](HarborSim/Program.cs#L391) | `Enum.IsDefined(typeof(SkillType), typeText)` | b00b27d |
+| gibt es den enum-Namen? | `in SkillType.__members__` | [Program.cs:431](HarborSim/Program.cs#L431) | `Enum.IsDefined(typeof(SkillType), typeText)` | b00b27d |
 
 ## Entstehung
 

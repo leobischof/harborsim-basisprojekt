@@ -1,0 +1,11 @@
+Fehler: workers.csv wurde nicht gefunden.
+HarborSim – Hafensimulation
+10 Schiffe und 0 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 0
+
+Programm beendet.
