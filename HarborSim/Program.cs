@@ -1,5 +1,6 @@
 // HarborSim – Program.cs – Leo Bischof (12320283)
 using System;
+using System.Collections.Generic;
 
 namespace HarborSim
 {
@@ -9,6 +10,16 @@ namespace HarborSim
         static void Main(string[] args)
         {
             Console.WriteLine("HarborSim – Hafensimulation");
+        }
+
+        private static List<Ship> LoadShips()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static List<Worker> LoadWorkers()
+        {
+            throw new NotImplementedException();
         }
     }
 }
