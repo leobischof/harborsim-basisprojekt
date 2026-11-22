@@ -1,0 +1,135 @@
+diff --git a/HarborSim/Simulation/Harbor.cs b/HarborSim/Simulation/Harbor.cs
+index 03178d1..15b14f2 100644
+--- a/HarborSim/Simulation/Harbor.cs
++++ b/HarborSim/Simulation/Harbor.cs
+@@ -157,7 +157,7 @@ namespace HarborSim
+             {
+                 requirement = ship.LoadingStaff;
+             }
+-            return StaffPool.TrySelect(requirement, out selected);
++            return StaffPool.TrySelect(requirement, ship.GetDuration(task.Type), out selected);
+         }
+ 
+         // Springt zur kleinsten Endzeit aller laufenden Tasks.
+@@ -217,6 +217,9 @@ namespace HarborSim
+             Console.WriteLine($"Ende der Simulation: {_currentTime:dddd, dd.MM.yyyy HH:mm}");
+             Console.WriteLine($"Dauer: {(int)duration.TotalHours} h {duration.Minutes} min");
+             Console.WriteLine($"Abgeschlossene Tasks: {_finishedTasks.Count} von {taskCount}");
++            Console.WriteLine("Arbeitszeit je Mitarbeiter (höchstens 8 h):");
++            // GetWorkTimeReport endet schon mit einem Zeilenumbruch -> Write statt WriteLine
++            Console.Write(StaffPool.GetWorkTimeReport());
+ 
+             if (_pendingTasks.Count == 0)
+             {
+diff --git a/HarborSim/Simulation/Task.cs b/HarborSim/Simulation/Task.cs
+index a1679e0..fdb547b 100644
+--- a/HarborSim/Simulation/Task.cs
++++ b/HarborSim/Simulation/Task.cs
+@@ -42,7 +42,7 @@ namespace HarborSim
+             // Erst jetzt werden die Mitarbeiter beschäftigt
+             foreach (Worker worker in Workers)
+             {
+-                worker.StartTask();
++                worker.StartTask(GetDuration());
+             }
+         }
+ 
+diff --git a/HarborSim/Staff/StaffPool.cs b/HarborSim/Staff/StaffPool.cs
+index 89ffcf0..805cf71 100644
+--- a/HarborSim/Staff/StaffPool.cs
++++ b/HarborSim/Staff/StaffPool.cs
+@@ -21,7 +21,7 @@ namespace HarborSim
+         // (Python: return erfolg, auswahl).
+         // Wichtig: Hier wird niemand beschäftigt (IsBusy bleibt false). Das passiert erst
+         // beim Start des Tasks in Task.StartTask.
+-        public bool TrySelect(SkillMatrix requirement, out List<Worker> selected)
++        public bool TrySelect(SkillMatrix requirement, TimeSpan duration, out List<Worker> selected)
+         {
+             // Sortieren mit Worker.CompareTo -> Beginner zuerst.
+             // So wird immer die niedrigste noch ausreichende Qualifikation gewählt.
+@@ -44,7 +44,8 @@ namespace HarborSim
+                         bool fits = !worker.IsBusy
+                             && worker.SkillType == skillType
+                             && worker.SkillLevel >= skillLevel
+-                            && !selected.Contains(worker);
++                            && !selected.Contains(worker)
++                            && worker.HasTimeFor(duration);
+                         if (fits)
+                         {
+                             selected.Add(worker);
+@@ -67,6 +68,24 @@ namespace HarborSim
+             return true;
+         }
+ 
++        // Arbeitszeit aller Mitarbeiter, die gearbeitet haben, eine Zeile pro Mitarbeiter.
++        // Reihenfolge wie bei der Auswahl: nach SkillLevel, dann nach Id.
++        public string GetWorkTimeReport()
++        {
++            _workers.Sort();
++            string report = "";
++            foreach (Worker worker in _workers)
++            {
++                if (worker.WorkTime == TimeSpan.Zero)
++                {
++                    continue;
++                }
++                TimeSpan time = worker.WorkTime;
++                report += $"  {worker.Name}: {(int)time.TotalHours} h {time.Minutes} min" + Environment.NewLine;
++            }
++            return report;
++        }
++
+         // Liste aller Mitarbeiter, eine Zeile pro Mitarbeiter.
+         public string GetDescription()
+         {
+diff --git a/HarborSim/Staff/Worker.cs b/HarborSim/Staff/Worker.cs
+index cbd9310..13425d2 100644
+--- a/HarborSim/Staff/Worker.cs
++++ b/HarborSim/Staff/Worker.cs
+@@ -12,6 +12,9 @@ namespace HarborSim
+         // Jeder neue Worker holt sich die nächste freie Nummer -> eindeutige ID.
+         private static int _nextId = 1;
+ 
++        // Länger als eine Schicht (8 h) darf niemand arbeiten
++        private static readonly TimeSpan MaxWorkTime = TimeSpan.FromHours(8);
++
+         // Property mit "private set": von außen nur lesbar, ändern nur innerhalb der Klasse
+         // (Python: @property ohne Setter)
+         public int Id { get; private set; }
+@@ -19,6 +22,8 @@ namespace HarborSim
+         public SkillType SkillType { get; private set; }
+         public SkillLevel SkillLevel { get; private set; }
+         public bool IsBusy { get; private set; }
++        // Summe der Dauer aller Tasks, an denen der Mitarbeiter gearbeitet hat
++        public TimeSpan WorkTime { get; private set; }
+ 
+         // Konstruktor (Python: __init__)
+         public Worker(string name, SkillType skillType, SkillLevel skillLevel)
+@@ -34,10 +39,18 @@ namespace HarborSim
+             SkillType = skillType;
+             SkillLevel = skillLevel;
+             IsBusy = false;
++            WorkTime = TimeSpan.Zero;
++        }
++
++        // Passt ein Task dieser Dauer noch in die Schicht?
++        public bool HasTimeFor(TimeSpan duration)
++        {
++            return WorkTime + duration <= MaxWorkTime;
+         }
+ 
+         // Wird beim tatsächlichen Start eines Tasks aufgerufen.
+-        public void StartTask()
++        // Die ganze Dauer zählt sofort zur Arbeitszeit, der Task läuft ja sicher bis zum Ende.
++        public void StartTask(TimeSpan duration)
+         {
+             // Ein beschäftigter Mitarbeiter darf keinem zweiten Task zugewiesen werden.
+             if (IsBusy)
+@@ -45,6 +58,7 @@ namespace HarborSim
+                 throw new InvalidOperationException($"{Name} ist bereits beschäftigt.");
+             }
+             IsBusy = true;
++            WorkTime += duration;
+         }
+ 
+         public void EndTask()

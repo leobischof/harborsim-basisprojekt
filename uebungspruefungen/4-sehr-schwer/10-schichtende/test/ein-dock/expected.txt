@@ -1,0 +1,155 @@
+HarborSim – Hafensimulation
+10 Schiffe und 20 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 1
+
+=== Verfügbarkeit ändern ===
+1  Mitarbeiter
+2  Schiffe
+3  Docks (aktuell 3)
+0  Zurück
+Auswahl: 3
+Anzahl der Docks (1-10): 1
+
+=== Verfügbarkeit ändern ===
+1  Mitarbeiter
+2  Schiffe
+3  Docks (aktuell 1)
+0  Zurück
+Auswahl: 0
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 2
+
+=== Übersicht ===
+Start: Montag, 23.11.2026 06:00
+Docks: 1
+Schiffe, sortiert nach Länge:
+  #11 Baltic Venture, 92 m lang, 16,2 m breit, 5,4 m Tiefgang, Frachtschiff mit 120 Containern
+  #16 Coastal Breeze, 108 m lang, 18,2 m breit, 4,8 m Tiefgang, Passagierschiff mit 160 Passagieren
+  #12 Silver Mariner, 146 m lang, 22,8 m breit, 7,1 m Tiefgang, Frachtschiff mit 340 Containern
+  #17 Seaside Spirit, 156 m lang, 23,5 m breit, 5,9 m Tiefgang, Passagierschiff mit 420 Passagieren
+  #13 Emerald Trader, 194 m lang, 28,7 m breit, 8,8 m Tiefgang, Frachtschiff mit 650 Containern
+  #18 Royal Voyager, 214 m lang, 29,8 m breit, 7 m Tiefgang, Passagierschiff mit 900 Passagieren
+  #14 Oceanic Horizon, 244 m lang, 34,8 m breit, 10,4 m Tiefgang, Frachtschiff mit 1100 Containern
+  #19 Northern Crown, 268 m lang, 37,4 m breit, 8,1 m Tiefgang, Passagierschiff mit 1800 Passagieren
+  #15 Grand Meridian, 292 m lang, 42,6 m breit, 12,1 m Tiefgang, Frachtschiff mit 1800 Containern
+  #20 Grand Horizon, 316 m lang, 44,6 m breit, 8,9 m Tiefgang, Passagierschiff mit 3200 Passagieren
+Mitarbeiter:
+  #21 Adrian (DockWorker, Expert)
+  #22 Bianca (DockWorker, Qualified)
+  #23 Caleb (DockWorker, Qualified)
+  #24 Diana (DockWorker, Qualified)
+  #25 Elias (DockWorker, Beginner)
+  #26 Freya (DockWorker, Beginner)
+  #27 Gabriel (DockWorker, Beginner)
+  #28 Helena (DockWorker, Beginner)
+  #29 Isaac (DockWorker, Beginner)
+  #30 Linda (Pilot, Qualified)
+  #31 Martin (Pilot, Expert)
+  #32 Nora (CraneOperator, Expert)
+  #33 Oliver (CraneOperator, Beginner)
+  #34 Petra (CraneOperator, Beginner)
+  #35 Samuel (CraneOperator, Qualified)
+  #36 Tina (PassengerCoordinator, Expert)
+  #37 Ulrich (PassengerCoordinator, Beginner)
+  #38 Thomas (PassengerCoordinator, Beginner)
+  #39 Vera (PassengerCoordinator, Beginner)
+  #40 Jana (PassengerCoordinator, Beginner)
+
+=== Simulation ===
+06:00  START  Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+       -> Baltic Venture liegt an Dock 1
+06:30  ENDE   Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+06:30  START  Loading   | Baltic Venture | 06:30-07:12 | Elias, Bianca, Oliver
+07:12  ENDE   Loading   | Baltic Venture | 06:30-07:12 | Elias, Bianca, Oliver
+       -> Baltic Venture: 120 Container verladen
+07:12  START  Undocking | Baltic Venture | 07:12-07:32 | Elias, Freya, Gabriel
+07:32  ENDE   Undocking | Baltic Venture | 07:12-07:32 | Elias, Freya, Gabriel
+       -> Dock 1 ist wieder frei
+07:32  START  Docking   | Silver Mariner | 07:32-08:02 | Linda, Elias, Freya, Gabriel
+       -> Silver Mariner liegt an Dock 1
+08:02  ENDE   Docking   | Silver Mariner | 07:32-08:02 | Linda, Elias, Freya, Gabriel
+08:02  START  Loading   | Silver Mariner | 08:02-09:06 | Elias, Freya, Bianca, Oliver
+09:06  ENDE   Loading   | Silver Mariner | 08:02-09:06 | Elias, Freya, Bianca, Oliver
+       -> Silver Mariner: 340 Container verladen
+09:06  START  Undocking | Silver Mariner | 09:06-09:26 | Linda, Elias, Freya, Gabriel
+09:26  ENDE   Undocking | Silver Mariner | 09:06-09:26 | Linda, Elias, Freya, Gabriel
+       -> Dock 1 ist wieder frei
+09:26  START  Docking   | Emerald Trader | 09:26-09:56 | Linda, Elias, Freya, Gabriel
+       -> Emerald Trader liegt an Dock 1
+09:56  ENDE   Docking   | Emerald Trader | 09:26-09:56 | Linda, Elias, Freya, Gabriel
+09:56  START  Loading   | Emerald Trader | 09:56-11:31 | Elias, Freya, Gabriel, Adrian, Oliver, Samuel
+11:31  ENDE   Loading   | Emerald Trader | 09:56-11:31 | Elias, Freya, Gabriel, Adrian, Oliver, Samuel
+       -> Emerald Trader: 650 Container verladen
+11:31  START  Undocking | Emerald Trader | 11:31-11:51 | Linda, Elias, Freya, Gabriel
+11:51  ENDE   Undocking | Emerald Trader | 11:31-11:51 | Linda, Elias, Freya, Gabriel
+       -> Dock 1 ist wieder frei
+11:51  START  Docking   | Oceanic Horizon | 11:51-12:21 | Martin, Elias, Freya, Gabriel
+       -> Oceanic Horizon liegt an Dock 1
+12:21  ENDE   Docking   | Oceanic Horizon | 11:51-12:21 | Martin, Elias, Freya, Gabriel
+12:21  START  Loading   | Oceanic Horizon | 12:21-14:41 | Freya, Gabriel, Helena, Isaac, Adrian, Oliver, Petra, Nora
+14:41  ENDE   Loading   | Oceanic Horizon | 12:21-14:41 | Freya, Gabriel, Helena, Isaac, Adrian, Oliver, Petra, Nora
+       -> Oceanic Horizon: 1100 Container verladen
+14:41  START  Undocking | Oceanic Horizon | 14:41-15:01 | Martin, Elias, Gabriel, Helena
+15:01  ENDE   Undocking | Oceanic Horizon | 14:41-15:01 | Martin, Elias, Gabriel, Helena
+       -> Dock 1 ist wieder frei
+15:01  START  Docking   | Grand Meridian | 15:01-15:31 | Martin, Elias, Gabriel, Helena
+       -> Grand Meridian liegt an Dock 1
+15:31  ENDE   Docking   | Grand Meridian | 15:01-15:31 | Martin, Elias, Gabriel, Helena
+
+Simulation blockiert: Keiner der offenen Tasks kann gestartet werden.
+Nicht durchführbare Tasks:
+  Loading   | Grand Meridian
+  Undocking | Grand Meridian
+  Docking   | Coastal Breeze
+  Loading   | Coastal Breeze
+  Undocking | Coastal Breeze
+  Docking   | Seaside Spirit
+  Loading   | Seaside Spirit
+  Undocking | Seaside Spirit
+  Docking   | Royal Voyager
+  Loading   | Royal Voyager
+  Undocking | Royal Voyager
+  Docking   | Northern Crown
+  Loading   | Northern Crown
+  Undocking | Northern Crown
+  Docking   | Grand Horizon
+  Loading   | Grand Horizon
+  Undocking | Grand Horizon
+
+=== Zusammenfassung ===
+Ende der Simulation: Montag, 23.11.2026 15:31
+Dauer: 9 h 31 min
+Abgeschlossene Tasks: 13 von 30
+Arbeitszeit je Mitarbeiter (höchstens 8 h):
+  Elias: 7 h 11 min
+  Freya: 7 h 59 min
+  Gabriel: 7 h 45 min
+  Helena: 3 h 10 min
+  Isaac: 2 h 20 min
+  Oliver: 5 h 41 min
+  Petra: 2 h 20 min
+  Bianca: 1 h 46 min
+  Linda: 1 h 40 min
+  Samuel: 1 h 35 min
+  Adrian: 3 h 55 min
+  Martin: 1 h 20 min
+  Nora: 2 h 20 min
+Nicht durchgeführte Tasks: 17 (Liste siehe oben)
+Noch angedockt: Grand Meridian
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 0
+
+Programm beendet.

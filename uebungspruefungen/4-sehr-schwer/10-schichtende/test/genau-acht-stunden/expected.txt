@@ -1,0 +1,86 @@
+HarborSim – Hafensimulation
+5 Schiffe und 4 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 2
+
+=== Übersicht ===
+Start: Montag, 23.11.2026 06:00
+Docks: 3
+Schiffe, sortiert nach Länge:
+  #6 Ida, 50 m lang, 10 m breit, 4 m Tiefgang, Frachtschiff mit 400 Containern
+  #7 Jola, 50 m lang, 10 m breit, 4 m Tiefgang, Frachtschiff mit 400 Containern
+  #8 Kira, 50 m lang, 10 m breit, 4 m Tiefgang, Frachtschiff mit 400 Containern
+  #9 Lena, 50 m lang, 10 m breit, 4 m Tiefgang, Frachtschiff mit 400 Containern
+  #10 Mara, 50 m lang, 10 m breit, 4 m Tiefgang, Frachtschiff mit 400 Containern
+Mitarbeiter:
+  #5 Anton (DockWorker, Beginner)
+  #6 Berta (DockWorker, Beginner)
+  #7 Carla (DockWorker, Beginner)
+  #8 Kurt (CraneOperator, Beginner)
+
+=== Simulation ===
+06:00  START  Docking   | Ida | 06:00-06:30 | Anton, Berta, Carla
+       -> Ida liegt an Dock 1
+06:30  ENDE   Docking   | Ida | 06:00-06:30 | Anton, Berta, Carla
+06:30  START  Loading   | Ida | 06:30-07:40 | Anton, Kurt
+07:40  ENDE   Loading   | Ida | 06:30-07:40 | Anton, Kurt
+       -> Ida: 400 Container verladen
+07:40  START  Undocking | Ida | 07:40-08:00 | Anton, Berta, Carla
+08:00  ENDE   Undocking | Ida | 07:40-08:00 | Anton, Berta, Carla
+       -> Dock 1 ist wieder frei
+08:00  START  Docking   | Jola | 08:00-08:30 | Anton, Berta, Carla
+       -> Jola liegt an Dock 1
+08:30  ENDE   Docking   | Jola | 08:00-08:30 | Anton, Berta, Carla
+08:30  START  Loading   | Jola | 08:30-09:40 | Anton, Kurt
+09:40  ENDE   Loading   | Jola | 08:30-09:40 | Anton, Kurt
+       -> Jola: 400 Container verladen
+09:40  START  Undocking | Jola | 09:40-10:00 | Anton, Berta, Carla
+10:00  ENDE   Undocking | Jola | 09:40-10:00 | Anton, Berta, Carla
+       -> Dock 1 ist wieder frei
+10:00  START  Docking   | Kira | 10:00-10:30 | Anton, Berta, Carla
+       -> Kira liegt an Dock 1
+10:30  ENDE   Docking   | Kira | 10:00-10:30 | Anton, Berta, Carla
+10:30  START  Loading   | Kira | 10:30-11:40 | Anton, Kurt
+11:40  ENDE   Loading   | Kira | 10:30-11:40 | Anton, Kurt
+       -> Kira: 400 Container verladen
+11:40  START  Undocking | Kira | 11:40-12:00 | Anton, Berta, Carla
+12:00  ENDE   Undocking | Kira | 11:40-12:00 | Anton, Berta, Carla
+       -> Dock 1 ist wieder frei
+12:00  START  Docking   | Lena | 12:00-12:30 | Anton, Berta, Carla
+       -> Lena liegt an Dock 1
+12:30  ENDE   Docking   | Lena | 12:00-12:30 | Anton, Berta, Carla
+12:30  START  Loading   | Lena | 12:30-13:40 | Anton, Kurt
+13:40  ENDE   Loading   | Lena | 12:30-13:40 | Anton, Kurt
+       -> Lena: 400 Container verladen
+13:40  START  Undocking | Lena | 13:40-14:00 | Anton, Berta, Carla
+14:00  ENDE   Undocking | Lena | 13:40-14:00 | Anton, Berta, Carla
+       -> Dock 1 ist wieder frei
+
+Simulation blockiert: Keiner der offenen Tasks kann gestartet werden.
+Nicht durchführbare Tasks:
+  Docking   | Mara
+  Loading   | Mara
+  Undocking | Mara
+
+=== Zusammenfassung ===
+Ende der Simulation: Montag, 23.11.2026 14:00
+Dauer: 8 h 0 min
+Abgeschlossene Tasks: 12 von 15
+Arbeitszeit je Mitarbeiter (höchstens 8 h):
+  Anton: 8 h 0 min
+  Berta: 3 h 20 min
+  Carla: 3 h 20 min
+  Kurt: 4 h 40 min
+Nicht durchgeführte Tasks: 3 (Liste siehe oben)
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 0
+
+Programm beendet.

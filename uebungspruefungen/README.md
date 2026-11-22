@@ -15,6 +15,8 @@ Vererbung, Interfaces, Listen, Arrays, Dateien, Exceptions), kein LINQ, keine La
 | 07 | [Neuer Schiffstyp Tanker](3-schwer/07-tanker/README.md) | schwer | 20 min | `Program`, neue Klasse `TankerShip` |
 | 08 | [Docks mit Wassertiefe](3-schwer/08-docks-wassertiefe/README.md) | schwer | 20 min | `Harbor` |
 | 09 | [Passagierschiffe haben Vorrang](3-schwer/09-passagiere-zuerst/README.md) | schwer | 20 min | `Ship`, `PassengerShip`, `Harbor`, neue Klasse `DockingOrderComparer` |
+| 10 | [Schichtende nach 8 Stunden](4-sehr-schwer/10-schichtende/README.md) | sehr schwer | 25 min | `Worker`, `StaffPool`, `Task`, `Harbor` |
+| 11 | [Neuer Task Bunkern](4-sehr-schwer/11-bunkern/README.md) | sehr schwer | 25 min | `TaskType`, `Ship`, `Task`, `Harbor` |
 
 ## So übst du
 

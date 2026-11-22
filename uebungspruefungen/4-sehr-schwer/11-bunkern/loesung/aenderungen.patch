@@ -1,0 +1,155 @@
+diff --git a/HarborSim/Ships/Ship.cs b/HarborSim/Ships/Ship.cs
+index d37a7ec..aa5ca01 100644
+--- a/HarborSim/Ships/Ship.cs
++++ b/HarborSim/Ships/Ship.cs
+@@ -32,6 +32,18 @@ namespace HarborSim
+             get { return CalculateBaseLoadingStaff(); }
+         }
+ 
++        // Bunkern: zwei Hafenarbeiter, einer davon mindestens qualifiziert.
++        // Gleich für alle Schiffstypen, darum nicht virtual.
++        public SkillMatrix BunkeringStaff
++        {
++            get
++            {
++                SkillMatrix staff = new SkillMatrix();
++                AddStaffWithLeader(staff, SkillType.DockWorker, 2, SkillLevel.Qualified);
++                return staff;
++            }
++        }
++
+         // protected = nur diese Klasse und abgeleitete Klassen dürfen den Konstruktor aufrufen
+         protected Ship(string name, double length, double beam, double draft)
+         {
+@@ -118,7 +130,7 @@ namespace HarborSim
+             {
+                 return !IsDocked;
+             }
+-            // Loading und Undocking gehen nur im angedockten Zustand
++            // Alle anderen Tasks gehen nur im angedockten Zustand
+             return IsDocked;
+         }
+ 
+@@ -170,6 +182,8 @@ namespace HarborSim
+                     return TimeSpan.FromMinutes(30);
+                 case TaskType.Loading:
+                     return TimeSpan.FromMinutes(60);
++                case TaskType.Bunkering:
++                    return TimeSpan.FromMinutes(40);
+                 case TaskType.Undocking:
+                     return TimeSpan.FromMinutes(20);
+                 default:
+@@ -182,6 +196,12 @@ namespace HarborSim
+             return $"#{Id} {Name}, {Length} m lang, {Beam} m breit, {Draft} m Tiefgang";
+         }
+ 
++        // Ende des Bunkerns: gleiche Meldung für alle Schiffstypen
++        public void Bunker()
++        {
++            Console.WriteLine($"       -> {Name}: Treibstoff gebunkert");
++        }
++
+         // abstract = keine Umsetzung hier, jede abgeleitete Klasse MUSS Load schreiben
+         public abstract void Load();
+     }
+diff --git a/HarborSim/Simulation/Harbor.cs b/HarborSim/Simulation/Harbor.cs
+index 03178d1..df6a1a9 100644
+--- a/HarborSim/Simulation/Harbor.cs
++++ b/HarborSim/Simulation/Harbor.cs
+@@ -39,11 +39,12 @@ namespace HarborSim
+             _runningTasks = new List<Task>();
+             _finishedTasks = new List<Task>();
+ 
+-            // Für jedes Schiff drei Tasks in fester Reihenfolge
++            // Für jedes Schiff vier Tasks in fester Reihenfolge
+             foreach (Ship ship in _ships)
+             {
+                 _pendingTasks.Add(new Task(TaskType.Docking, ship));
+                 _pendingTasks.Add(new Task(TaskType.Loading, ship));
++                _pendingTasks.Add(new Task(TaskType.Bunkering, ship));
+                 _pendingTasks.Add(new Task(TaskType.Undocking, ship));
+             }
+         }
+@@ -146,17 +147,29 @@ namespace HarborSim
+             {
+                 return false;
+             }
+-            if (task.Type == TaskType.Undocking && HasPendingLoadingTask(ship))
++            // Bunkern erst nach dem Beladen
++            if (task.Type == TaskType.Bunkering && HasPendingTask(ship, TaskType.Loading))
++            {
++                return false;
++            }
++            // Ablegen erst, wenn beladen und gebunkert ist
++            if (task.Type == TaskType.Undocking
++                && (HasPendingTask(ship, TaskType.Loading) || HasPendingTask(ship, TaskType.Bunkering)))
+             {
+                 return false;
+             }
+ 
+-            // Loading braucht LoadingStaff, Docking und Undocking brauchen DockingStaff
++            // Loading braucht LoadingStaff, Bunkering braucht BunkeringStaff,
++            // Docking und Undocking brauchen DockingStaff
+             SkillMatrix requirement = ship.DockingStaff;
+             if (task.Type == TaskType.Loading)
+             {
+                 requirement = ship.LoadingStaff;
+             }
++            else if (task.Type == TaskType.Bunkering)
++            {
++                requirement = ship.BunkeringStaff;
++            }
+             return StaffPool.TrySelect(requirement, out selected);
+         }
+ 
+@@ -248,12 +261,12 @@ namespace HarborSim
+             return false;
+         }
+ 
+-        // Muss dieses Schiff noch beladen werden? Dann darf es nicht ablegen.
+-        private bool HasPendingLoadingTask(Ship ship)
++        // Wartet für dieses Schiff noch ein Task des angegebenen Typs?
++        private bool HasPendingTask(Ship ship, TaskType type)
+         {
+             foreach (Task task in _pendingTasks)
+             {
+-                if (task.Ship == ship && task.Type == TaskType.Loading)
++                if (task.Ship == ship && task.Type == type)
+                 {
+                     return true;
+                 }
+diff --git a/HarborSim/Simulation/Task.cs b/HarborSim/Simulation/Task.cs
+index a1679e0..1f05ee2 100644
+--- a/HarborSim/Simulation/Task.cs
++++ b/HarborSim/Simulation/Task.cs
+@@ -54,6 +54,10 @@ namespace HarborSim
+             {
+                 Ship.Load();
+             }
++            else if (Type == TaskType.Bunkering)
++            {
++                Ship.Bunker();
++            }
+             else if (Type == TaskType.Undocking)
+             {
+                 Ship.Undock();
+diff --git a/HarborSim/Simulation/TaskType.cs b/HarborSim/Simulation/TaskType.cs
+index 7d208c9..cd895fd 100644
+--- a/HarborSim/Simulation/TaskType.cs
++++ b/HarborSim/Simulation/TaskType.cs
+@@ -1,12 +1,13 @@
+ // HarborSim – TaskType.cs – Leo Bischof (12320283)
+ namespace HarborSim
+ {
+-    // Die drei Arbeitsschritte, die jedes Schiff der Reihe nach durchläuft:
+-    // Anlegen -> Beladen -> Ablegen
++    // Die vier Arbeitsschritte, die jedes Schiff der Reihe nach durchläuft:
++    // Anlegen -> Beladen -> Bunkern (Treibstoff tanken) -> Ablegen
+     public enum TaskType
+     {
+         Docking,
+         Loading,
++        Bunkering,
+         Undocking
+     }
+ }
