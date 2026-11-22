@@ -1,0 +1,9 @@
+Baltic Venture,Cargo,92,16.2,5.4,120
+Baltic Venture,Passenger,120,20,6,300
+Nordlicht,Tanker,100,18,6,500
+Kurz,Cargo,80
+Negativ,Cargo,-50,10,4,100
+Zahlenfehler,Passenger,abc,20,6,300
+
+,Cargo,100,20,6,100
+Aurora,Passenger,180,28,7,900

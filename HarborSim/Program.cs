@@ -267,10 +267,11 @@ namespace HarborSim
         private static List<Ship> LoadShips(string path)
         {
             List<Ship> ships = new List<Ship>();
+            // Schon eingelesene Namen: die Verfügbarkeit im Menü hängt am Namen, er muss eindeutig sein
+            List<string> names = new List<string>();
             string[] lines = ReadLines(path);
 
-            // Bei 1 starten = Kopfzeile überspringen
-            for (int i = 1; i < lines.Length; i++)
+            for (int i = FirstDataLine(lines, path); i < lines.Length; i++)
             {
                 if (string.IsNullOrWhiteSpace(lines[i]))
                 {
@@ -279,7 +280,10 @@ namespace HarborSim
                 // try/catch (Python: try/except): eine kaputte Zeile soll nicht alles abbrechen
                 try
                 {
-                    ships.Add(ParseShip(lines[i]));
+                    CheckUniqueName(lines[i], names);
+                    Ship ship = ParseShip(lines[i]);
+                    ships.Add(ship);
+                    names.Add(ship.Name);
                 }
                 catch (FormatException e)
                 {
@@ -297,9 +301,10 @@ namespace HarborSim
         private static List<Worker> LoadWorkers(string path)
         {
             List<Worker> workers = new List<Worker>();
+            List<string> names = new List<string>();
             string[] lines = ReadLines(path);
 
-            for (int i = 1; i < lines.Length; i++)
+            for (int i = FirstDataLine(lines, path); i < lines.Length; i++)
             {
                 if (string.IsNullOrWhiteSpace(lines[i]))
                 {
@@ -307,7 +312,10 @@ namespace HarborSim
                 }
                 try
                 {
-                    workers.Add(ParseWorker(lines[i]));
+                    CheckUniqueName(lines[i], names);
+                    Worker worker = ParseWorker(lines[i]);
+                    workers.Add(worker);
+                    names.Add(worker.Name);
                 }
                 catch (FormatException e)
                 {
@@ -329,7 +337,12 @@ namespace HarborSim
             {
                 return File.ReadAllLines(path);
             }
-            // IOException deckt auch FileNotFoundException und DirectoryNotFoundException ab
+            // Der speziellere Fall zuerst: catch-Blöcke werden von oben nach unten geprüft
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine($"Fehler: {Path.GetFileName(path)} wurde nicht gefunden.");
+            }
+            // IOException deckt auch DirectoryNotFoundException und gesperrte Dateien ab
             catch (IOException e)
             {
                 Console.WriteLine($"Fehler: {Path.GetFileName(path)} konnte nicht gelesen werden ({e.Message})");
@@ -341,7 +354,34 @@ namespace HarborSim
             return new string[0];
         }
 
-        // Zeilennummer wie im Editor: Index 0 ist Zeile 1 (die Kopfzeile)
+        // Beide Dateien beginnen mit einer Kopfzeile, deren erste Spalte "Name" heißt.
+        // Fehlt sie, ist schon Zeile 1 ein Datensatz und darf nicht übersprungen werden.
+        private static int FirstDataLine(string[] lines, string path)
+        {
+            if (lines.Length == 0)
+            {
+                return 0;
+            }
+            if (lines[0].Split(',')[0].Trim() == "Name")
+            {
+                return 1;
+            }
+            Console.WriteLine($"Hinweis: {Path.GetFileName(path)} hat keine Kopfzeile, Zeile 1 wird als Daten gelesen.");
+            return 0;
+        }
+
+        // Wirft, wenn der Name (erste Spalte) schon eingelesen wurde.
+        // Geprüft wird vor dem Erzeugen des Objekts, damit kein doppeltes Objekt eine ID verbraucht.
+        private static void CheckUniqueName(string line, List<string> names)
+        {
+            string name = line.Split(',')[0].Trim();
+            if (names.Contains(name))
+            {
+                throw new FormatException($"Name \"{name}\" kommt doppelt vor");
+            }
+        }
+
+        // Zeilennummer wie im Editor: Index 0 ist Zeile 1
         private static void PrintSkippedLine(string path, int index, string reason)
         {
             Console.WriteLine($"Zeile {index + 1} in {Path.GetFileName(path)} übersprungen: {reason}");

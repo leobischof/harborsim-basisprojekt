@@ -3,6 +3,8 @@
 #   input.txt    = Menüeingaben (eine Eingabe pro Zeile)
 #   expected.txt = Soll-Ausgabe
 #   actual.txt   = Ist-Ausgabe (wird erzeugt, nicht eingecheckt)
+#   ships.csv / workers.csv  = optional, ersetzen für dieses Szenario die normalen Daten
+#   fehlende-dateien.txt     = optional, diese Daten-Dateien werden vorher gelöscht
 # Das Startdatum ist fest (Montag, 23.11.2026), damit die Ausgabe immer gleich ist.
 # Aufruf: powershell -ExecutionPolicy Bypass -File tests/run-tests.ps1
 
@@ -19,6 +21,26 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 $dll = Join-Path $binDir 'HarborSim.dll'
+$dataSource = Join-Path $root 'HarborSim/Data'
+$dataTarget = Join-Path $binDir 'Data'
+
+# Vor jedem Szenario die normalen CSV-Dateien zurückkopieren,
+# dann die Dateien des Szenarios darüberlegen bzw. löschen.
+function Set-ScenarioData($scenarioPath) {
+    Copy-Item -Path (Join-Path $dataSource '*.csv') -Destination $dataTarget -Force
+    foreach ($name in @('ships.csv', 'workers.csv')) {
+        $own = Join-Path $scenarioPath $name
+        if (Test-Path -LiteralPath $own) {
+            Copy-Item -LiteralPath $own -Destination $dataTarget -Force
+        }
+    }
+    $missingList = Join-Path $scenarioPath 'fehlende-dateien.txt'
+    if (Test-Path -LiteralPath $missingList) {
+        foreach ($name in (Get-Content -LiteralPath $missingList)) {
+            Remove-Item -LiteralPath (Join-Path $dataTarget $name.Trim()) -Force
+        }
+    }
+}
 
 # Zeilen ohne Leerzeichen am Ende und ohne Leerzeilen am Schluss.
 # Die Eingabeaufforderung "Auswahl: " endet sonst mit einem Leerzeichen.
@@ -40,6 +62,7 @@ foreach ($scenario in $scenarios) {
     $inputFile = Join-Path $scenario.FullName 'input.txt'
     $expectedFile = Join-Path $scenario.FullName 'expected.txt'
     $actualFile = Join-Path $scenario.FullName 'actual.txt'
+    Set-ScenarioData $scenario.FullName
 
     $process = Start-Process -FilePath 'dotnet' -ArgumentList "`"$dll`"", $StartDate `
         -RedirectStandardInput $inputFile -RedirectStandardOutput $actualFile `
@@ -75,6 +98,9 @@ foreach ($scenario in $scenarios) {
         Write-Host "        Ist:  $ist"
     }
 }
+
+# Normale Daten wiederherstellen, damit ein späterer Start aus .bin nichts Kaputtes liest
+Set-ScenarioData $scenarioDir
 
 Write-Host ''
 Write-Host "$($scenarios.Count - $failed) von $($scenarios.Count) Szenarien OK"
