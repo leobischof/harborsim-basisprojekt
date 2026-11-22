@@ -48,9 +48,26 @@ namespace HarborSim
             }
         }
 
+        // Übersicht vor dem Start: Startzeit, Docks, Schiffe und Mitarbeiter.
         public void PrintOverview()
         {
-            throw new NotImplementedException();
+            // Kopie sortieren, damit die Reihenfolge der Tasks (CSV-Reihenfolge) gleich bleibt
+            List<Ship> sortedShips = new List<Ship>(_ships);
+            sortedShips.Sort(new ShipComparer());
+
+            Console.WriteLine();
+            Console.WriteLine("=== Übersicht ===");
+            // dddd = Wochentag ausgeschrieben, z. B. "Montag"
+            Console.WriteLine($"Start: {_startTime:dddd, dd.MM.yyyy HH:mm}");
+            Console.WriteLine($"Docks: {_dockedShips.Length}");
+            Console.WriteLine("Schiffe, sortiert nach Länge:");
+            foreach (Ship ship in sortedShips)
+            {
+                Console.WriteLine("  " + ship.GetDescription());
+            }
+            Console.WriteLine("Mitarbeiter:");
+            // GetDescription endet schon mit einem Zeilenumbruch -> Write statt WriteLine
+            Console.Write(StaffPool.GetDescription());
         }
 
         // Simulationsschleife laut Flowchart "Discrete Event Simulation".
