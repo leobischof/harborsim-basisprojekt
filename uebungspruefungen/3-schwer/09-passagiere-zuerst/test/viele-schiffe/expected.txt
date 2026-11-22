@@ -1,0 +1,230 @@
+HarborSim – Hafensimulation
+18 Schiffe und 20 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 2
+
+=== Übersicht ===
+Start: Montag, 23.11.2026 06:00
+Docks: 3
+Schiffe, sortiert nach Länge:
+  #19 Aurora, 55 m lang, 11 m breit, 4 m Tiefgang, Frachtschiff mit 100 Containern
+  #21 Calypso, 57 m lang, 11 m breit, 4 m Tiefgang, Frachtschiff mit 140 Containern
+  #22 Delphin, 58 m lang, 11 m breit, 4 m Tiefgang, Frachtschiff mit 160 Containern
+  #24 Fortuna, 60 m lang, 11 m breit, 4 m Tiefgang, Frachtschiff mit 200 Containern
+  #20 Boreas, 61 m lang, 12 m breit, 4 m Tiefgang, Passagierschiff mit 340 Passagieren
+  #25 Gaia, 61 m lang, 11 m breit, 4 m Tiefgang, Frachtschiff mit 220 Containern
+  #27 Iris, 63 m lang, 11 m breit, 4 m Tiefgang, Frachtschiff mit 260 Containern
+  #23 Eos, 64 m lang, 12 m breit, 4 m Tiefgang, Passagierschiff mit 460 Passagieren
+  #28 Juno, 64 m lang, 11 m breit, 4 m Tiefgang, Frachtschiff mit 280 Containern
+  #30 Luna, 66 m lang, 11 m breit, 4 m Tiefgang, Frachtschiff mit 320 Containern
+  #26 Helios, 67 m lang, 12 m breit, 4 m Tiefgang, Passagierschiff mit 580 Passagieren
+  #31 Merkur, 67 m lang, 11 m breit, 4 m Tiefgang, Frachtschiff mit 340 Containern
+  #33 Orion, 69 m lang, 11 m breit, 4 m Tiefgang, Frachtschiff mit 380 Containern
+  #29 Kairos, 70 m lang, 12 m breit, 4 m Tiefgang, Passagierschiff mit 700 Passagieren
+  #34 Pallas, 70 m lang, 11 m breit, 4 m Tiefgang, Frachtschiff mit 400 Containern
+  #36 Selene, 72 m lang, 11 m breit, 4 m Tiefgang, Frachtschiff mit 440 Containern
+  #32 Nereus, 73 m lang, 12 m breit, 4 m Tiefgang, Passagierschiff mit 820 Passagieren
+  #35 Rhea, 76 m lang, 12 m breit, 4 m Tiefgang, Passagierschiff mit 940 Passagieren
+Mitarbeiter:
+  #21 Adrian (DockWorker, Expert)
+  #22 Bianca (DockWorker, Qualified)
+  #23 Caleb (DockWorker, Qualified)
+  #24 Diana (DockWorker, Qualified)
+  #25 Elias (DockWorker, Beginner)
+  #26 Freya (DockWorker, Beginner)
+  #27 Gabriel (DockWorker, Beginner)
+  #28 Helena (DockWorker, Beginner)
+  #29 Isaac (DockWorker, Beginner)
+  #30 Linda (Pilot, Qualified)
+  #31 Martin (Pilot, Expert)
+  #32 Nora (CraneOperator, Expert)
+  #33 Oliver (CraneOperator, Beginner)
+  #34 Petra (CraneOperator, Beginner)
+  #35 Samuel (CraneOperator, Qualified)
+  #36 Tina (PassengerCoordinator, Expert)
+  #37 Ulrich (PassengerCoordinator, Beginner)
+  #38 Thomas (PassengerCoordinator, Beginner)
+  #39 Vera (PassengerCoordinator, Beginner)
+  #40 Jana (PassengerCoordinator, Beginner)
+
+=== Simulation ===
+06:00  START  Docking   | Boreas | 06:00-06:30 | Elias, Freya, Gabriel
+       -> Boreas liegt an Dock 1
+06:00  START  Docking   | Eos | 06:00-06:30 | Helena, Isaac, Bianca
+       -> Eos liegt an Dock 2
+06:00  START  Docking   | Helios | 06:00-06:30 | Caleb, Diana, Adrian
+       -> Helios liegt an Dock 3
+06:30  ENDE   Docking   | Boreas | 06:00-06:30 | Elias, Freya, Gabriel
+06:30  ENDE   Docking   | Eos | 06:00-06:30 | Helena, Isaac, Bianca
+06:30  ENDE   Docking   | Helios | 06:00-06:30 | Caleb, Diana, Adrian
+06:30  START  Loading   | Boreas | 06:30-06:52 | Elias, Freya, Ulrich
+06:30  START  Loading   | Eos | 06:30-06:55 | Gabriel, Helena, Thomas
+06:30  START  Loading   | Helios | 06:30-06:57 | Isaac, Bianca, Vera
+06:52  ENDE   Loading   | Boreas | 06:30-06:52 | Elias, Freya, Ulrich
+       -> Boreas: 340 Passagiere an Bord
+06:52  START  Undocking | Boreas | 06:52-07:12 | Elias, Freya, Caleb
+06:55  ENDE   Loading   | Eos | 06:30-06:55 | Gabriel, Helena, Thomas
+       -> Eos: 460 Passagiere an Bord
+06:55  START  Undocking | Eos | 06:55-07:15 | Gabriel, Helena, Diana
+06:57  ENDE   Loading   | Helios | 06:30-06:57 | Isaac, Bianca, Vera
+       -> Helios: 580 Passagiere an Bord
+06:57  START  Undocking | Helios | 06:57-07:17 | Isaac, Bianca, Adrian
+07:12  ENDE   Undocking | Boreas | 06:52-07:12 | Elias, Freya, Caleb
+       -> Dock 1 ist wieder frei
+07:12  START  Docking   | Kairos | 07:12-07:42 | Elias, Freya, Caleb
+       -> Kairos liegt an Dock 1
+07:15  ENDE   Undocking | Eos | 06:55-07:15 | Gabriel, Helena, Diana
+       -> Dock 2 ist wieder frei
+07:15  START  Docking   | Nereus | 07:15-07:45 | Gabriel, Helena, Diana
+       -> Nereus liegt an Dock 2
+07:17  ENDE   Undocking | Helios | 06:57-07:17 | Isaac, Bianca, Adrian
+       -> Dock 3 ist wieder frei
+07:17  START  Docking   | Rhea | 07:17-07:47 | Isaac, Bianca, Adrian
+       -> Rhea liegt an Dock 3
+07:42  ENDE   Docking   | Kairos | 07:12-07:42 | Elias, Freya, Caleb
+07:42  START  Loading   | Kairos | 07:42-08:11 | Elias, Freya, Ulrich
+07:45  ENDE   Docking   | Nereus | 07:15-07:45 | Gabriel, Helena, Diana
+07:45  START  Loading   | Nereus | 07:45-08:17 | Gabriel, Helena, Thomas, Vera
+07:47  ENDE   Docking   | Rhea | 07:17-07:47 | Isaac, Bianca, Adrian
+07:47  START  Loading   | Rhea | 07:47-08:21 | Isaac, Bianca, Jana, Tina
+08:11  ENDE   Loading   | Kairos | 07:42-08:11 | Elias, Freya, Ulrich
+       -> Kairos: 700 Passagiere an Bord
+08:11  START  Undocking | Kairos | 08:11-08:31 | Elias, Freya, Caleb
+08:17  ENDE   Loading   | Nereus | 07:45-08:17 | Gabriel, Helena, Thomas, Vera
+       -> Nereus: 820 Passagiere an Bord
+08:17  START  Undocking | Nereus | 08:17-08:37 | Gabriel, Helena, Diana
+08:21  ENDE   Loading   | Rhea | 07:47-08:21 | Isaac, Bianca, Jana, Tina
+       -> Rhea: 940 Passagiere an Bord
+08:21  START  Undocking | Rhea | 08:21-08:41 | Isaac, Bianca, Adrian
+08:31  ENDE   Undocking | Kairos | 08:11-08:31 | Elias, Freya, Caleb
+       -> Dock 1 ist wieder frei
+08:31  START  Docking   | Aurora | 08:31-09:01 | Elias, Freya, Caleb
+       -> Aurora liegt an Dock 1
+08:37  ENDE   Undocking | Nereus | 08:17-08:37 | Gabriel, Helena, Diana
+       -> Dock 2 ist wieder frei
+08:37  START  Docking   | Calypso | 08:37-09:07 | Gabriel, Helena, Diana
+       -> Calypso liegt an Dock 2
+08:41  ENDE   Undocking | Rhea | 08:21-08:41 | Isaac, Bianca, Adrian
+       -> Dock 3 ist wieder frei
+08:41  START  Docking   | Delphin | 08:41-09:11 | Isaac, Bianca, Adrian
+       -> Delphin liegt an Dock 3
+09:01  ENDE   Docking   | Aurora | 08:31-09:01 | Elias, Freya, Caleb
+09:01  START  Loading   | Aurora | 09:01-09:41 | Elias, Freya, Oliver
+09:07  ENDE   Docking   | Calypso | 08:37-09:07 | Gabriel, Helena, Diana
+09:07  START  Loading   | Calypso | 09:07-09:51 | Gabriel, Helena, Petra
+09:11  ENDE   Docking   | Delphin | 08:41-09:11 | Isaac, Bianca, Adrian
+09:11  START  Loading   | Delphin | 09:11-09:57 | Isaac, Bianca, Samuel
+09:41  ENDE   Loading   | Aurora | 09:01-09:41 | Elias, Freya, Oliver
+       -> Aurora: 100 Container verladen
+09:41  START  Undocking | Aurora | 09:41-10:01 | Elias, Freya, Caleb
+09:51  ENDE   Loading   | Calypso | 09:07-09:51 | Gabriel, Helena, Petra
+       -> Calypso: 140 Container verladen
+09:51  START  Undocking | Calypso | 09:51-10:11 | Gabriel, Helena, Diana
+09:57  ENDE   Loading   | Delphin | 09:11-09:57 | Isaac, Bianca, Samuel
+       -> Delphin: 160 Container verladen
+09:57  START  Undocking | Delphin | 09:57-10:17 | Isaac, Bianca, Adrian
+10:01  ENDE   Undocking | Aurora | 09:41-10:01 | Elias, Freya, Caleb
+       -> Dock 1 ist wieder frei
+10:01  START  Docking   | Fortuna | 10:01-10:31 | Elias, Freya, Caleb
+       -> Fortuna liegt an Dock 1
+10:11  ENDE   Undocking | Calypso | 09:51-10:11 | Gabriel, Helena, Diana
+       -> Dock 2 ist wieder frei
+10:11  START  Docking   | Gaia | 10:11-10:41 | Gabriel, Helena, Diana
+       -> Gaia liegt an Dock 2
+10:17  ENDE   Undocking | Delphin | 09:57-10:17 | Isaac, Bianca, Adrian
+       -> Dock 3 ist wieder frei
+10:17  START  Docking   | Iris | 10:17-10:47 | Isaac, Bianca, Adrian
+       -> Iris liegt an Dock 3
+10:31  ENDE   Docking   | Fortuna | 10:01-10:31 | Elias, Freya, Caleb
+10:31  START  Loading   | Fortuna | 10:31-11:21 | Elias, Freya, Oliver
+10:41  ENDE   Docking   | Gaia | 10:11-10:41 | Gabriel, Helena, Diana
+10:41  START  Loading   | Gaia | 10:41-11:33 | Gabriel, Helena, Petra
+10:47  ENDE   Docking   | Iris | 10:17-10:47 | Isaac, Bianca, Adrian
+10:47  START  Loading   | Iris | 10:47-11:43 | Isaac, Bianca, Samuel
+11:21  ENDE   Loading   | Fortuna | 10:31-11:21 | Elias, Freya, Oliver
+       -> Fortuna: 200 Container verladen
+11:21  START  Undocking | Fortuna | 11:21-11:41 | Elias, Freya, Caleb
+11:33  ENDE   Loading   | Gaia | 10:41-11:33 | Gabriel, Helena, Petra
+       -> Gaia: 220 Container verladen
+11:33  START  Undocking | Gaia | 11:33-11:53 | Gabriel, Helena, Diana
+11:41  ENDE   Undocking | Fortuna | 11:21-11:41 | Elias, Freya, Caleb
+       -> Dock 1 ist wieder frei
+11:41  START  Docking   | Juno | 11:41-12:11 | Elias, Freya, Caleb
+       -> Juno liegt an Dock 1
+11:43  ENDE   Loading   | Iris | 10:47-11:43 | Isaac, Bianca, Samuel
+       -> Iris: 260 Container verladen
+11:43  START  Undocking | Iris | 11:43-12:03 | Isaac, Bianca, Adrian
+11:53  ENDE   Undocking | Gaia | 11:33-11:53 | Gabriel, Helena, Diana
+       -> Dock 2 ist wieder frei
+11:53  START  Docking   | Luna | 11:53-12:23 | Gabriel, Helena, Diana
+       -> Luna liegt an Dock 2
+12:03  ENDE   Undocking | Iris | 11:43-12:03 | Isaac, Bianca, Adrian
+       -> Dock 3 ist wieder frei
+12:03  START  Docking   | Merkur | 12:03-12:33 | Isaac, Bianca, Adrian
+       -> Merkur liegt an Dock 3
+12:11  ENDE   Docking   | Juno | 11:41-12:11 | Elias, Freya, Caleb
+12:11  START  Loading   | Juno | 12:11-13:09 | Elias, Freya, Oliver
+12:23  ENDE   Docking   | Luna | 11:53-12:23 | Gabriel, Helena, Diana
+12:23  START  Loading   | Luna | 12:23-13:25 | Gabriel, Helena, Petra
+12:33  ENDE   Docking   | Merkur | 12:03-12:33 | Isaac, Bianca, Adrian
+12:33  START  Loading   | Merkur | 12:33-13:37 | Isaac, Bianca, Samuel
+13:09  ENDE   Loading   | Juno | 12:11-13:09 | Elias, Freya, Oliver
+       -> Juno: 280 Container verladen
+13:09  START  Undocking | Juno | 13:09-13:29 | Elias, Freya, Caleb
+13:25  ENDE   Loading   | Luna | 12:23-13:25 | Gabriel, Helena, Petra
+       -> Luna: 320 Container verladen
+13:25  START  Undocking | Luna | 13:25-13:45 | Gabriel, Helena, Diana
+13:29  ENDE   Undocking | Juno | 13:09-13:29 | Elias, Freya, Caleb
+       -> Dock 1 ist wieder frei
+13:29  START  Docking   | Orion | 13:29-13:59 | Elias, Freya, Caleb
+       -> Orion liegt an Dock 1
+13:37  ENDE   Loading   | Merkur | 12:33-13:37 | Isaac, Bianca, Samuel
+       -> Merkur: 340 Container verladen
+13:37  START  Undocking | Merkur | 13:37-13:57 | Isaac, Bianca, Adrian
+13:45  ENDE   Undocking | Luna | 13:25-13:45 | Gabriel, Helena, Diana
+       -> Dock 2 ist wieder frei
+13:45  START  Docking   | Pallas | 13:45-14:15 | Gabriel, Helena, Diana
+       -> Pallas liegt an Dock 2
+13:57  ENDE   Undocking | Merkur | 13:37-13:57 | Isaac, Bianca, Adrian
+       -> Dock 3 ist wieder frei
+13:57  START  Docking   | Selene | 13:57-14:27 | Isaac, Bianca, Adrian
+       -> Selene liegt an Dock 3
+13:59  ENDE   Docking   | Orion | 13:29-13:59 | Elias, Freya, Caleb
+13:59  START  Loading   | Orion | 13:59-15:07 | Elias, Freya, Oliver
+14:15  ENDE   Docking   | Pallas | 13:45-14:15 | Gabriel, Helena, Diana
+14:15  START  Loading   | Pallas | 14:15-15:25 | Gabriel, Helena, Petra
+14:27  ENDE   Docking   | Selene | 13:57-14:27 | Isaac, Bianca, Adrian
+14:27  START  Loading   | Selene | 14:27-15:41 | Isaac, Bianca, Samuel, Nora
+15:07  ENDE   Loading   | Orion | 13:59-15:07 | Elias, Freya, Oliver
+       -> Orion: 380 Container verladen
+15:07  START  Undocking | Orion | 15:07-15:27 | Elias, Freya, Caleb
+15:25  ENDE   Loading   | Pallas | 14:15-15:25 | Gabriel, Helena, Petra
+       -> Pallas: 400 Container verladen
+15:25  START  Undocking | Pallas | 15:25-15:45 | Gabriel, Helena, Diana
+15:27  ENDE   Undocking | Orion | 15:07-15:27 | Elias, Freya, Caleb
+       -> Dock 1 ist wieder frei
+15:41  ENDE   Loading   | Selene | 14:27-15:41 | Isaac, Bianca, Samuel, Nora
+       -> Selene: 440 Container verladen
+15:41  START  Undocking | Selene | 15:41-16:01 | Elias, Freya, Isaac
+15:45  ENDE   Undocking | Pallas | 15:25-15:45 | Gabriel, Helena, Diana
+       -> Dock 2 ist wieder frei
+16:01  ENDE   Undocking | Selene | 15:41-16:01 | Elias, Freya, Isaac
+       -> Dock 3 ist wieder frei
+
+=== Zusammenfassung ===
+Ende der Simulation: Montag, 23.11.2026 16:01
+Dauer: 10 h 1 min
+Abgeschlossene Tasks: 54 von 54
+Alle Tasks wurden durchgeführt.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 0
+
+Programm beendet.

@@ -1,0 +1,146 @@
+diff --git a/HarborSim/Simulation/Harbor.cs b/HarborSim/Simulation/Harbor.cs
+index 03178d1..e313c16 100644
+--- a/HarborSim/Simulation/Harbor.cs
++++ b/HarborSim/Simulation/Harbor.cs
+@@ -8,6 +8,10 @@ namespace HarborSim
+     // Verwaltet Docks, Personal, Schiffe, Tasklisten und die Simulationszeit.
+     public class Harbor
+     {
++        // Wassertiefe: Dock 1 ist 6 m tief, jedes weitere Dock 2,5 m tiefer
++        private const double FirstDockDepth = 6.0;
++        private const double DockDepthStep = 2.5;
++
+         private DateTime _currentTime;
+         // Startzeit merken, um am Ende die Gesamtdauer auszurechnen
+         private DateTime _startTime;
+@@ -15,6 +19,8 @@ namespace HarborSim
+         // Docks als Array: ein Platz pro Dock, null = Dock frei, sonst das angedockte Schiff.
+         // Array statt Liste, weil die Anzahl der Docks fix ist (Python: [None] * dock_count)
+         private Ship[] _dockedShips;
++        // Wassertiefe pro Dock, gleicher Index wie _dockedShips
++        private double[] _dockDepths;
+ 
+         private List<Task> _pendingTasks;   // offen, noch nicht gestartet
+         private List<Task> _runningTasks;   // laufen gerade
+@@ -32,6 +38,11 @@ namespace HarborSim
+ 
+             _ships = ships;
+             _dockedShips = new Ship[dockCount];
++            _dockDepths = new double[dockCount];
++            for (int i = 0; i < dockCount; i++)
++            {
++                _dockDepths[i] = FirstDockDepth + i * DockDepthStep;
++            }
+             StaffPool = new StaffPool(workers);
+             _currentTime = startTime;
+             _startTime = startTime;
+@@ -59,12 +70,30 @@ namespace HarborSim
+             Console.WriteLine("=== Übersicht ===");
+             // dddd = Wochentag ausgeschrieben, z. B. "Montag"
+             Console.WriteLine($"Start: {_startTime:dddd, dd.MM.yyyy HH:mm}");
+-            Console.WriteLine($"Docks: {_dockedShips.Length}");
++            // Tiefen als Text zusammenbauen: "6 m, 8,5 m, 11 m" (Python: ", ".join(...))
++            string depths = "";
++            for (int i = 0; i < _dockDepths.Length; i++)
++            {
++                if (i > 0)
++                {
++                    depths += ", ";
++                }
++                depths += $"{_dockDepths[i]} m";
++            }
++            Console.WriteLine($"Docks: {_dockedShips.Length} (Wassertiefe: {depths})");
+             Console.WriteLine("Schiffe, sortiert nach Länge:");
+             foreach (Ship ship in sortedShips)
+             {
+                 Console.WriteLine("  " + ship.GetDescription());
+             }
++            // In CSV-Reihenfolge, wie die Tasks
++            foreach (Ship ship in _ships)
++            {
++                if (!FitsAnyDock(ship))
++                {
++                    Console.WriteLine($"Passt in kein Dock: {ship.Name} ({ship.Draft} m Tiefgang)");
++                }
++            }
+             Console.WriteLine("Mitarbeiter:");
+             // GetDescription endet schon mit einem Zeilenumbruch -> Write statt WriteLine
+             Console.Write(StaffPool.GetDescription());
+@@ -142,7 +171,7 @@ namespace HarborSim
+             {
+                 return false;
+             }
+-            if (task.Type == TaskType.Docking && !HasFreeDock())
++            if (task.Type == TaskType.Docking && FindFreeDock(ship) < 0)
+             {
+                 return false;
+             }
+@@ -235,12 +264,18 @@ namespace HarborSim
+             }
+         }
+ 
+-        // Ist mindestens ein Dock frei (also null)?
+-        private bool HasFreeDock()
++        // Passt das Schiff in dieses Dock? Das Wasser muss tiefer sein als der Tiefgang.
++        private bool FitsDock(Ship ship, int index)
+         {
+-            foreach (Ship dockedShip in _dockedShips)
++            return ship.Draft < _dockDepths[index];
++        }
++
++        // Passt das Schiff in irgendein Dock (egal ob frei)?
++        private bool FitsAnyDock(Ship ship)
++        {
++            for (int i = 0; i < _dockDepths.Length; i++)
+             {
+-                if (dockedShip == null)
++                if (FitsDock(ship, i))
+                 {
+                     return true;
+                 }
+@@ -248,6 +283,19 @@ namespace HarborSim
+             return false;
+         }
+ 
++        // Index des ersten freien Docks, das tief genug ist, sonst -1.
++        private int FindFreeDock(Ship ship)
++        {
++            for (int i = 0; i < _dockedShips.Length; i++)
++            {
++                if (_dockedShips[i] == null && FitsDock(ship, i))
++                {
++                    return i;
++                }
++            }
++            return -1;
++        }
++
+         // Muss dieses Schiff noch beladen werden? Dann darf es nicht ablegen.
+         private bool HasPendingLoadingTask(Ship ship)
+         {
+@@ -261,19 +309,16 @@ namespace HarborSim
+             return false;
+         }
+ 
+-        // Setzt das Schiff in das erste freie Dock.
++        // Setzt das Schiff in das erste freie Dock, das tief genug ist.
+         private void AddShipToDock(Ship ship)
+         {
+-            for (int i = 0; i < _dockedShips.Length; i++)
++            int index = FindFreeDock(ship);
++            if (index < 0)
+             {
+-                if (_dockedShips[i] == null)
+-                {
+-                    _dockedShips[i] = ship;
+-                    Console.WriteLine($"       -> {ship.Name} liegt an Dock {i + 1}");
+-                    return;
+-                }
++                throw new InvalidOperationException($"Kein passendes freies Dock für {ship.Name}.");
+             }
+-            throw new InvalidOperationException("Kein freies Dock vorhanden.");
++            _dockedShips[index] = ship;
++            Console.WriteLine($"       -> {ship.Name} liegt an Dock {index + 1}");
+         }
+ 
+         // Gibt das Dock frei, an dem das Schiff liegt.
