@@ -1,0 +1,99 @@
+diff --git a/HarborSim/Program.cs b/HarborSim/Program.cs
+index f7265d6..3b0648f 100644
+--- a/HarborSim/Program.cs
++++ b/HarborSim/Program.cs
+@@ -402,7 +402,7 @@ namespace HarborSim
+             double length = ParseDouble(parts[2], "Length");
+             double beam = ParseDouble(parts[3], "Beam");
+             double draft = ParseDouble(parts[4], "Draft");
+-            // Val1: Container bzw. Passagiere. Weitere Spalten (Val2, ...) werden ignoriert.
++            // Val1: Container, Passagiere bzw. m³ Ladung. Weitere Spalten (Val2, ...) werden ignoriert.
+             int val1 = ParseInt(parts[5], "Val1");
+ 
+             switch (type)
+@@ -411,6 +411,8 @@ namespace HarborSim
+                     return new CargoShip(name, length, beam, draft, val1);
+                 case "Passenger":
+                     return new PassengerShip(name, length, beam, draft, val1);
++                case "Tanker":
++                    return new TankerShip(name, length, beam, draft, val1);
+                 default:
+                     throw new FormatException($"unbekannter Schiffstyp \"{type}\"");
+             }
+diff --git a/HarborSim/Ships/TankerShip.cs b/HarborSim/Ships/TankerShip.cs
+new file mode 100644
+index 0000000..f1f10db
+--- /dev/null
++++ b/HarborSim/Ships/TankerShip.cs
+@@ -0,0 +1,71 @@
++// HarborSim – TankerShip.cs – Leo Bischof (12320283)
++using System;
++
++namespace HarborSim
++{
++    // Tanker: transportiert flüssige Ladung, gemessen in m³.
++    // Aufbau wie CargoShip, nur andere Zahlen.
++    public class TankerShip : Ship
++    {
++        // Ladung in m³, kommt aus Val1 in ships.csv
++        private int _cubicMeters;
++
++        public TankerShip(string name, double length, double beam, double draft, int cubicMeters)
++            : base(name, length, beam, draft)
++        {
++            if (cubicMeters < 0)
++            {
++                throw new ArgumentException($"{name}: Die Ladung darf nicht negativ sein.");
++            }
++            _cubicMeters = cubicMeters;
++        }
++
++        // Basisbedarf + zusätzliche Hafenarbeiter für die Schläuche:
++        // je angefangene 5000 m³ einer, über 10000 m³ einer qualifiziert, über 20000 m³ einer Experte.
++        public override SkillMatrix LoadingStaff
++        {
++            get
++            {
++                SkillMatrix staff = base.LoadingStaff;
++                int count = (int)Math.Ceiling(_cubicMeters / 5000.0);
++
++                SkillLevel leaderLevel = SkillLevel.Beginner;
++                if (_cubicMeters > 20000)
++                {
++                    leaderLevel = SkillLevel.Expert;
++                }
++                else if (_cubicMeters > 10000)
++                {
++                    leaderLevel = SkillLevel.Qualified;
++                }
++
++                AddStaffWithLeader(staff, SkillType.DockWorker, count, leaderLevel);
++                return staff;
++            }
++        }
++
++        // Pumpen: 20 Minuten + m³ / 200, auf ganze Minuten aufgerundet.
++        public override TimeSpan GetDuration(TaskType taskType)
++        {
++            if (taskType == TaskType.Loading)
++            {
++                return TimeSpan.FromMinutes(Math.Ceiling(20 + _cubicMeters / 200.0));
++            }
++            return base.GetDuration(taskType);
++        }
++
++        public override string GetDescription()
++        {
++            return $"{base.GetDescription()}, Tanker mit {_cubicMeters} m³ Ladung";
++        }
++
++        public override void Load()
++        {
++            if (!IsDocked)
++            {
++                throw new InvalidOperationException($"{Name} ist nicht angedockt und kann nicht beladen werden.");
++            }
++            Console.WriteLine($"       -> {Name}: {_cubicMeters} m³ gepumpt");
++        }
++    }
++}

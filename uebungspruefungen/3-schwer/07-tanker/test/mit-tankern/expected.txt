@@ -1,0 +1,90 @@
+HarborSim – Hafensimulation
+4 Schiffe und 20 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 2
+
+=== Übersicht ===
+Start: Montag, 23.11.2026 06:00
+Docks: 3
+Schiffe, sortiert nach Länge:
+  #5 Baltic Venture, 92 m lang, 16,2 m breit, 5,4 m Tiefgang, Frachtschiff mit 120 Containern
+  #8 Polarstern, 96 m lang, 17,4 m breit, 6,3 m Tiefgang, Tanker mit 3500 m³ Ladung
+  #7 Coastal Breeze, 108 m lang, 18,2 m breit, 4,8 m Tiefgang, Passagierschiff mit 160 Passagieren
+  #6 Nordlicht, 182 m lang, 32,2 m breit, 11,5 m Tiefgang, Tanker mit 12000 m³ Ladung
+Mitarbeiter:
+  #21 Adrian (DockWorker, Expert)
+  #22 Bianca (DockWorker, Qualified)
+  #23 Caleb (DockWorker, Qualified)
+  #24 Diana (DockWorker, Qualified)
+  #25 Elias (DockWorker, Beginner)
+  #26 Freya (DockWorker, Beginner)
+  #27 Gabriel (DockWorker, Beginner)
+  #28 Helena (DockWorker, Beginner)
+  #29 Isaac (DockWorker, Beginner)
+  #30 Linda (Pilot, Qualified)
+  #31 Martin (Pilot, Expert)
+  #32 Nora (CraneOperator, Expert)
+  #33 Oliver (CraneOperator, Beginner)
+  #34 Petra (CraneOperator, Beginner)
+  #35 Samuel (CraneOperator, Qualified)
+  #36 Tina (PassengerCoordinator, Expert)
+  #37 Ulrich (PassengerCoordinator, Beginner)
+  #38 Thomas (PassengerCoordinator, Beginner)
+  #39 Vera (PassengerCoordinator, Beginner)
+  #40 Jana (PassengerCoordinator, Beginner)
+
+=== Simulation ===
+06:00  START  Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+       -> Baltic Venture liegt an Dock 1
+06:00  START  Docking   | Nordlicht | 06:00-06:30 | Linda, Helena, Isaac, Bianca
+       -> Nordlicht liegt an Dock 2
+06:00  START  Docking   | Coastal Breeze | 06:00-06:30 | Martin, Caleb, Diana, Adrian
+       -> Coastal Breeze liegt an Dock 3
+06:30  ENDE   Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+06:30  ENDE   Docking   | Nordlicht | 06:00-06:30 | Linda, Helena, Isaac, Bianca
+06:30  ENDE   Docking   | Coastal Breeze | 06:00-06:30 | Martin, Caleb, Diana, Adrian
+06:30  START  Loading   | Baltic Venture | 06:30-07:12 | Elias, Bianca, Oliver
+06:30  START  Loading   | Nordlicht | 06:30-07:50 | Freya, Gabriel, Helena, Isaac, Caleb, Diana, Adrian
+07:12  ENDE   Loading   | Baltic Venture | 06:30-07:12 | Elias, Bianca, Oliver
+       -> Baltic Venture: 120 Container verladen
+07:50  ENDE   Loading   | Nordlicht | 06:30-07:50 | Freya, Gabriel, Helena, Isaac, Caleb, Diana, Adrian
+       -> Nordlicht: 12000 m³ gepumpt
+07:50  START  Undocking | Baltic Venture | 07:50-08:10 | Elias, Freya, Gabriel
+07:50  START  Undocking | Nordlicht | 07:50-08:10 | Linda, Helena, Isaac, Bianca
+07:50  START  Loading   | Coastal Breeze | 07:50-08:09 | Caleb, Diana, Adrian, Ulrich
+08:09  ENDE   Loading   | Coastal Breeze | 07:50-08:09 | Caleb, Diana, Adrian, Ulrich
+       -> Coastal Breeze: 160 Passagiere an Bord
+08:09  START  Undocking | Coastal Breeze | 08:09-08:29 | Martin, Caleb, Diana, Adrian
+08:10  ENDE   Undocking | Baltic Venture | 07:50-08:10 | Elias, Freya, Gabriel
+       -> Dock 1 ist wieder frei
+08:10  ENDE   Undocking | Nordlicht | 07:50-08:10 | Linda, Helena, Isaac, Bianca
+       -> Dock 2 ist wieder frei
+08:10  START  Docking   | Polarstern | 08:10-08:40 | Elias, Freya, Gabriel
+       -> Polarstern liegt an Dock 1
+08:29  ENDE   Undocking | Coastal Breeze | 08:09-08:29 | Martin, Caleb, Diana, Adrian
+       -> Dock 3 ist wieder frei
+08:40  ENDE   Docking   | Polarstern | 08:10-08:40 | Elias, Freya, Gabriel
+08:40  START  Loading   | Polarstern | 08:40-09:18 | Elias, Freya, Bianca
+09:18  ENDE   Loading   | Polarstern | 08:40-09:18 | Elias, Freya, Bianca
+       -> Polarstern: 3500 m³ gepumpt
+09:18  START  Undocking | Polarstern | 09:18-09:38 | Elias, Freya, Gabriel
+09:38  ENDE   Undocking | Polarstern | 09:18-09:38 | Elias, Freya, Gabriel
+       -> Dock 1 ist wieder frei
+
+=== Zusammenfassung ===
+Ende der Simulation: Montag, 23.11.2026 09:38
+Dauer: 3 h 38 min
+Abgeschlossene Tasks: 12 von 12
+Alle Tasks wurden durchgeführt.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 0
+
+Programm beendet.

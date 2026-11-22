@@ -1,0 +1,84 @@
+diff --git a/HarborSim/Ships/DockingOrderComparer.cs b/HarborSim/Ships/DockingOrderComparer.cs
+new file mode 100644
+index 0000000..dc3c8c8
+--- /dev/null
++++ b/HarborSim/Ships/DockingOrderComparer.cs
+@@ -0,0 +1,26 @@
++// HarborSim – DockingOrderComparer.cs – Leo Bischof (12320283)
++using System.Collections.Generic;
++
++namespace HarborSim
++{
++    // Reihenfolge, in der die Schiffe abgefertigt werden:
++    // zuerst Schiffe mit Vorrang (Passagierschiffe), dann die übrigen.
++    // Innerhalb einer Gruppe nach Id, also in der Reihenfolge der CSV.
++    public class DockingOrderComparer : IComparer<Ship>
++    {
++        public int Compare(Ship x, Ship y)
++        {
++            if (x.HasPriority && !y.HasPriority)
++            {
++                return -1;
++            }
++            if (!x.HasPriority && y.HasPriority)
++            {
++                return 1;
++            }
++            // Sort ist nicht stabil (gleiche Elemente können die Plätze tauschen),
++            // deshalb entscheidet bei Gleichstand die Id
++            return x.Id.CompareTo(y.Id);
++        }
++    }
++}
+diff --git a/HarborSim/Ships/PassengerShip.cs b/HarborSim/Ships/PassengerShip.cs
+index 127c8d9..9a2de9a 100644
+--- a/HarborSim/Ships/PassengerShip.cs
++++ b/HarborSim/Ships/PassengerShip.cs
+@@ -20,6 +20,12 @@ namespace HarborSim
+             _passengerNumber = passengerNumber;
+         }
+ 
++        // Passagiere sollen nicht warten: Passagierschiffe werden zuerst abgefertigt
++        public override bool HasPriority
++        {
++            get { return true; }
++        }
++
+         // Basisbedarf an Hafenarbeitern + Passagierkoordinatoren:
+         // je angefangene 750 Passagiere einer, über 1000 einer qualifiziert, über 2500 einer Experte.
+         public override SkillMatrix LoadingStaff
+diff --git a/HarborSim/Ships/Ship.cs b/HarborSim/Ships/Ship.cs
+index d37a7ec..21c8613 100644
+--- a/HarborSim/Ships/Ship.cs
++++ b/HarborSim/Ships/Ship.cs
+@@ -32,6 +32,12 @@ namespace HarborSim
+             get { return CalculateBaseLoadingStaff(); }
+         }
+ 
++        // Vorrang beim Abfertigen? Normale Schiffe nicht, PassengerShip überschreibt das.
++        public virtual bool HasPriority
++        {
++            get { return false; }
++        }
++
+         // protected = nur diese Klasse und abgeleitete Klassen dürfen den Konstruktor aufrufen
+         protected Ship(string name, double length, double beam, double draft)
+         {
+diff --git a/HarborSim/Simulation/Harbor.cs b/HarborSim/Simulation/Harbor.cs
+index 03178d1..f3a6370 100644
+--- a/HarborSim/Simulation/Harbor.cs
++++ b/HarborSim/Simulation/Harbor.cs
+@@ -39,8 +39,11 @@ namespace HarborSim
+             _runningTasks = new List<Task>();
+             _finishedTasks = new List<Task>();
+ 
+-            // Für jedes Schiff drei Tasks in fester Reihenfolge
+-            foreach (Ship ship in _ships)
++            // Für jedes Schiff drei Tasks in fester Reihenfolge, Passagierschiffe zuerst.
++            // Eine Kopie sortieren, damit _ships in CSV-Reihenfolge bleibt.
++            List<Ship> taskOrder = new List<Ship>(_ships);
++            taskOrder.Sort(new DockingOrderComparer());
++            foreach (Ship ship in taskOrder)
+             {
+                 _pendingTasks.Add(new Task(TaskType.Docking, ship));
+                 _pendingTasks.Add(new Task(TaskType.Loading, ship));

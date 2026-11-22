@@ -12,6 +12,9 @@ Vererbung, Interfaces, Listen, Arrays, Dateien, Exceptions), kein LINQ, keine La
 | 04 | [CSV aus dem österreichischen Excel](2-mittel/04-excel-csv/README.md) | mittel | 15 min | `Program` |
 | 05 | [Schiffe nach Name sortieren](2-mittel/05-sortieren-nach-name/README.md) | mittel | 15 min | `Program`, neue Klasse `ShipNameComparer` |
 | 06 | [Fehlerprotokoll in eine Datei](2-mittel/06-fehlerprotokoll/README.md) | mittel | 15 min | `Program` |
+| 07 | [Neuer Schiffstyp Tanker](3-schwer/07-tanker/README.md) | schwer | 20 min | `Program`, neue Klasse `TankerShip` |
+| 08 | [Docks mit Wassertiefe](3-schwer/08-docks-wassertiefe/README.md) | schwer | 20 min | `Harbor` |
+| 09 | [Passagierschiffe haben Vorrang](3-schwer/09-passagiere-zuerst/README.md) | schwer | 20 min | `Ship`, `PassengerShip`, `Harbor`, neue Klasse `DockingOrderComparer` |
 
 ## So übst du
 
