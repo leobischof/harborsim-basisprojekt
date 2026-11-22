@@ -1,0 +1,36 @@
+diff --git a/HarborSim/Program.cs b/HarborSim/Program.cs
+index f7265d6..a92daef 100644
+--- a/HarborSim/Program.cs
++++ b/HarborSim/Program.cs
+@@ -335,7 +335,7 @@ namespace HarborSim
+         {
+             try
+             {
+-                return File.ReadAllLines(path);
++                return ConvertExcelLines(File.ReadAllLines(path));
+             }
+             // Der speziellere Fall zuerst: catch-Blöcke werden von oben nach unten geprüft
+             catch (FileNotFoundException)
+@@ -354,6 +354,22 @@ namespace HarborSim
+             return new string[0];
+         }
+ 
++        // Österreichisches Excel speichert CSV mit ";" als Trennzeichen und "," als Dezimalzeichen.
++        // Erkannt wird das an der Kopfzeile. Dann wird jede Zeile ins normale Format umgebaut:
++        // erst "," -> "." (Dezimalzeichen), danach ";" -> "," (Trennzeichen). Die Reihenfolge ist wichtig.
++        private static string[] ConvertExcelLines(string[] lines)
++        {
++            if (lines.Length == 0 || !lines[0].Contains(";"))
++            {
++                return lines;
++            }
++            for (int i = 0; i < lines.Length; i++)
++            {
++                lines[i] = lines[i].Replace(',', '.').Replace(';', ',');
++            }
++            return lines;
++        }
++
+         // Beide Dateien beginnen mit einer Kopfzeile, deren erste Spalte "Name" heißt.
+         // Fehlt sie, ist schon Zeile 1 ein Datensatz und darf nicht übersprungen werden.
+         private static int FirstDataLine(string[] lines, string path)

@@ -1,0 +1,73 @@
+diff --git a/HarborSim/Program.cs b/HarborSim/Program.cs
+index f7265d6..4df32f1 100644
+--- a/HarborSim/Program.cs
++++ b/HarborSim/Program.cs
+@@ -60,10 +60,11 @@ namespace HarborSim
+                 Console.WriteLine("=== Hauptmenü ===");
+                 Console.WriteLine("1  Verfügbarkeit ändern");
+                 Console.WriteLine("2  Simulation starten");
++                Console.WriteLine("3  Schiffe nach Name");
+                 Console.WriteLine("0  Beenden");
+ 
+-                // ReadNumber liefert nur 0, 1, 2 oder EndOfInput -> kein default nötig
+-                switch (ReadNumber("Auswahl: ", 0, 2))
++                // ReadNumber liefert nur 0 bis 3 oder EndOfInput -> kein default nötig
++                switch (ReadNumber("Auswahl: ", 0, 3))
+                 {
+                     case 1:
+                         ChangeAvailability();
+@@ -71,6 +72,9 @@ namespace HarborSim
+                     case 2:
+                         RunSimulation();
+                         break;
++                    case 3:
++                        PrintShipsByName();
++                        break;
+                     case 0:
+                     case EndOfInput:
+                         running = false;
+@@ -82,6 +86,21 @@ namespace HarborSim
+             Console.WriteLine("Programm beendet.");
+         }
+ 
++        // Alle eingelesenen Schiffe alphabetisch nach Name.
++        // Sortiert wird eine Kopie, damit _menuShips in der CSV-Reihenfolge bleibt.
++        private static void PrintShipsByName()
++        {
++            List<Ship> sorted = new List<Ship>(_menuShips);
++            sorted.Sort(new ShipNameComparer());
++
++            Console.WriteLine();
++            Console.WriteLine("=== Schiffe nach Name ===");
++            foreach (Ship ship in sorted)
++            {
++                Console.WriteLine("  " + ship.GetDescription());
++            }
++        }
++
+         // Startzeit: Datum aus dem Argument (yyyy-MM-dd) oder folgender Werktag, jeweils 06:00.
+         // Das Argument macht die Tests reproduzierbar.
+         private static DateTime GetStartTime(string[] args)
+diff --git a/HarborSim/Ships/ShipNameComparer.cs b/HarborSim/Ships/ShipNameComparer.cs
+new file mode 100644
+index 0000000..951a7a1
+--- /dev/null
++++ b/HarborSim/Ships/ShipNameComparer.cs
+@@ -0,0 +1,17 @@
++// HarborSim – ShipNameComparer.cs – Leo Bischof (12320283)
++using System;
++using System.Collections.Generic;
++
++namespace HarborSim
++{
++    // Sortiert Schiffe nur nach Name, alphabetisch.
++    // Zweite Sortierregel neben ShipComparer (Länge) -> eigene Klasse.
++    public class ShipNameComparer : IComparer<Ship>
++    {
++        // Rückgabe: < 0 -> x zuerst, 0 -> gleich, > 0 -> y zuerst
++        public int Compare(Ship x, Ship y)
++        {
++            return string.Compare(x.Name, y.Name, StringComparison.Ordinal);
++        }
++    }
++}

@@ -9,6 +9,9 @@ Vererbung, Interfaces, Listen, Arrays, Dateien, Exceptions), kein LINQ, keine La
 | 01 | [Schiffstyp unabhängig von Groß-/Kleinschreibung](1-leicht/01-typ-gross-klein/README.md) | leicht | 10 min | `Program` |
 | 02 | [Sicherheitsregel für große Passagierschiffe](1-leicht/02-lotse-grosse-passagierschiffe/README.md) | leicht | 10 min | `PassengerShip` |
 | 03 | [Container und Passagiere gesamt in der Übersicht](1-leicht/03-summen-in-uebersicht/README.md) | leicht | 10 min | `Harbor`, `CargoShip`, `PassengerShip` |
+| 04 | [CSV aus dem österreichischen Excel](2-mittel/04-excel-csv/README.md) | mittel | 15 min | `Program` |
+| 05 | [Schiffe nach Name sortieren](2-mittel/05-sortieren-nach-name/README.md) | mittel | 15 min | `Program`, neue Klasse `ShipNameComparer` |
+| 06 | [Fehlerprotokoll in eine Datei](2-mittel/06-fehlerprotokoll/README.md) | mittel | 15 min | `Program` |
 
 ## So übst du
 
@@ -31,6 +34,7 @@ Vererbung, Interfaces, Listen, Arrays, Dateien, Exceptions), kein LINQ, keine La
 ├── README.md            ← Angabe
 ├── Angabe.pdf           ← dieselbe Angabe als PDF (python tools/make_pdf.py)
 ├── test/<szenario>/     ← input.txt, expected.txt, eventuell eigene ships.csv/workers.csv
+│                           und erwartete-dateien/ (Dateien, die das Programm schreiben soll)
 └── loesung/
     ├── README.md        ← Erklärung der Lösung
     └── aenderungen.patch← nur die geänderten Zeilen gegenüber dem Basisprojekt
@@ -48,4 +52,5 @@ powershell -ExecutionPolicy Bypass -File uebungspruefungen/pruefe-loesung.ps1 1-
 ```
 
 Mit `-OhneLoesung` läuft dieselbe Prüfung auf dem unveränderten Basisprojekt. Dort müssen die
-Szenarien scheitern, sonst würden sie die Aufgabe gar nicht prüfen.
+Szenarien scheitern, sonst würden sie die Aufgabe gar nicht prüfen. Ausnahme: Szenarien, die nur
+sicherstellen, dass das Bisherige weiter funktioniert (z. B. `normales-format` in Aufgabe 4).

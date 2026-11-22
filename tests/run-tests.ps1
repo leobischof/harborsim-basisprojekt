@@ -5,6 +5,8 @@
 #   actual.txt   = Ist-Ausgabe (wird erzeugt, nicht eingecheckt)
 #   ships.csv / workers.csv  = optional, ersetzen für dieses Szenario die normalen Daten
 #   fehlende-dateien.txt     = optional, diese Daten-Dateien werden vorher gelöscht
+#   erwartete-dateien/       = optional, jede Datei darin muss nach dem Lauf genauso
+#                              neben dem Programm liegen (z. B. ein Protokoll, das das Programm schreibt)
 # Das Startdatum ist fest (Montag, 23.11.2026), damit die Ausgabe immer gleich ist.
 # Aufruf: powershell -ExecutionPolicy Bypass -File tests/run-tests.ps1
 # Optional: -Projekt <Ordner> testet eine andere Kopie des Projekts,
@@ -39,6 +41,13 @@ function Set-ScenarioData($scenarioPath) {
         $own = Join-Path $scenarioPath $name
         if (Test-Path -LiteralPath $own) {
             Copy-Item -LiteralPath $own -Destination $dataTarget -Force
+        }
+    }
+    # Dateien, die das Programm selbst schreiben soll, vorher wegräumen
+    $expectedFiles = Join-Path $scenarioPath 'erwartete-dateien'
+    if (Test-Path -LiteralPath $expectedFiles) {
+        foreach ($file in (Get-ChildItem -LiteralPath $expectedFiles -File)) {
+            Remove-Item -LiteralPath (Join-Path $binDir $file.Name) -Force -ErrorAction SilentlyContinue
         }
     }
     $missingList = Join-Path $scenarioPath 'fehlende-dateien.txt'
@@ -88,7 +97,25 @@ foreach ($scenario in $scenarios) {
         }
     }
 
-    if ($process.ExitCode -eq 0 -and $firstDiff -eq -1) {
+    # Vom Programm geschriebene Dateien zeilenweise vergleichen
+    $fileErrors = @()
+    $expectedFiles = Join-Path $scenario.FullName 'erwartete-dateien'
+    if (Test-Path -LiteralPath $expectedFiles) {
+        foreach ($file in (Get-ChildItem -LiteralPath $expectedFiles -File)) {
+            $written = Join-Path $binDir $file.Name
+            if (-not (Test-Path -LiteralPath $written)) {
+                $fileErrors += "$($file.Name) wurde nicht geschrieben"
+                continue
+            }
+            $soll = @(Read-Lines $file.FullName)
+            $ist = @(Read-Lines $written)
+            if (($soll -join "`n") -cne ($ist -join "`n")) {
+                $fileErrors += "$($file.Name) hat einen anderen Inhalt"
+            }
+        }
+    }
+
+    if ($process.ExitCode -eq 0 -and $firstDiff -eq -1 -and $fileErrors.Count -eq 0) {
         Write-Host "OK      $($scenario.Name)" -ForegroundColor Green
         continue
     }
@@ -103,6 +130,9 @@ foreach ($scenario in $scenarios) {
         Write-Host "        Zeile $($firstDiff + 1)"
         Write-Host "        Soll: $soll"
         Write-Host "        Ist:  $ist"
+    }
+    foreach ($message in $fileErrors) {
+        Write-Host "        $message"
     }
 }
 

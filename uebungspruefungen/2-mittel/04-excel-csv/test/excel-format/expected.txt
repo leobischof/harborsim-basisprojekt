@@ -1,0 +1,85 @@
+Zeile 6 in ships.csv übersprungen: Beam "abc" ist keine Zahl
+HarborSim – Hafensimulation
+4 Schiffe und 13 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 2
+Zeile 6 in ships.csv übersprungen: Beam "abc" ist keine Zahl
+
+=== Übersicht ===
+Start: Montag, 23.11.2026 06:00
+Docks: 3
+Schiffe, sortiert nach Länge:
+  #5 Baltic Venture, 92 m lang, 16,2 m breit, 5,4 m Tiefgang, Frachtschiff mit 120 Containern
+  #6 Coastal Breeze, 108 m lang, 18,2 m breit, 4,8 m Tiefgang, Passagierschiff mit 160 Passagieren
+  #7 Emerald Trader, 194 m lang, 28,7 m breit, 8,8 m Tiefgang, Frachtschiff mit 650 Containern
+  #8 Royal Voyager, 214 m lang, 29,8 m breit, 7 m Tiefgang, Passagierschiff mit 900 Passagieren
+Mitarbeiter:
+  #14 Adrian (DockWorker, Expert)
+  #15 Bianca (DockWorker, Qualified)
+  #16 Caleb (DockWorker, Qualified)
+  #17 Diana (DockWorker, Qualified)
+  #18 Elias (DockWorker, Beginner)
+  #19 Freya (DockWorker, Beginner)
+  #20 Gabriel (DockWorker, Beginner)
+  #21 Linda (Pilot, Qualified)
+  #22 Martin (Pilot, Expert)
+  #23 Nora (CraneOperator, Expert)
+  #24 Samuel (CraneOperator, Qualified)
+  #25 Tina (PassengerCoordinator, Expert)
+  #26 Ulrich (PassengerCoordinator, Beginner)
+
+=== Simulation ===
+06:00  START  Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+       -> Baltic Venture liegt an Dock 1
+06:00  START  Docking   | Coastal Breeze | 06:00-06:30 | Linda, Bianca, Caleb, Diana
+       -> Coastal Breeze liegt an Dock 2
+06:30  ENDE   Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+06:30  ENDE   Docking   | Coastal Breeze | 06:00-06:30 | Linda, Bianca, Caleb, Diana
+06:30  START  Loading   | Baltic Venture | 06:30-07:12 | Elias, Bianca, Samuel
+06:30  START  Loading   | Coastal Breeze | 06:30-06:49 | Freya, Gabriel, Caleb, Ulrich
+06:49  ENDE   Loading   | Coastal Breeze | 06:30-06:49 | Freya, Gabriel, Caleb, Ulrich
+       -> Coastal Breeze: 160 Passagiere an Bord
+06:49  START  Undocking | Coastal Breeze | 06:49-07:09 | Linda, Freya, Gabriel, Caleb
+07:09  ENDE   Undocking | Coastal Breeze | 06:49-07:09 | Linda, Freya, Gabriel, Caleb
+       -> Dock 2 ist wieder frei
+07:09  START  Docking   | Emerald Trader | 07:09-07:39 | Linda, Freya, Gabriel, Caleb
+       -> Emerald Trader liegt an Dock 2
+07:12  ENDE   Loading   | Baltic Venture | 06:30-07:12 | Elias, Bianca, Samuel
+       -> Baltic Venture: 120 Container verladen
+07:12  START  Undocking | Baltic Venture | 07:12-07:32 | Elias, Bianca, Diana
+07:32  ENDE   Undocking | Baltic Venture | 07:12-07:32 | Elias, Bianca, Diana
+       -> Dock 1 ist wieder frei
+07:32  START  Docking   | Royal Voyager | 07:32-08:02 | Martin, Elias, Bianca, Diana
+       -> Royal Voyager liegt an Dock 1
+07:39  ENDE   Docking   | Emerald Trader | 07:09-07:39 | Linda, Freya, Gabriel, Caleb
+07:39  START  Loading   | Emerald Trader | 07:39-09:14 | Freya, Gabriel, Caleb, Adrian, Samuel, Nora
+08:02  ENDE   Docking   | Royal Voyager | 07:32-08:02 | Martin, Elias, Bianca, Diana
+09:14  ENDE   Loading   | Emerald Trader | 07:39-09:14 | Freya, Gabriel, Caleb, Adrian, Samuel, Nora
+       -> Emerald Trader: 650 Container verladen
+09:14  START  Undocking | Emerald Trader | 09:14-09:34 | Linda, Elias, Freya, Gabriel
+09:34  ENDE   Undocking | Emerald Trader | 09:14-09:34 | Linda, Elias, Freya, Gabriel
+       -> Dock 2 ist wieder frei
+09:34  START  Loading   | Royal Voyager | 09:34-10:07 | Elias, Freya, Gabriel, Bianca, Adrian, Ulrich, Tina
+10:07  ENDE   Loading   | Royal Voyager | 09:34-10:07 | Elias, Freya, Gabriel, Bianca, Adrian, Ulrich, Tina
+       -> Royal Voyager: 900 Passagiere an Bord
+10:07  START  Undocking | Royal Voyager | 10:07-10:27 | Martin, Elias, Freya, Gabriel
+10:27  ENDE   Undocking | Royal Voyager | 10:07-10:27 | Martin, Elias, Freya, Gabriel
+       -> Dock 1 ist wieder frei
+
+=== Zusammenfassung ===
+Ende der Simulation: Montag, 23.11.2026 10:27
+Dauer: 4 h 27 min
+Abgeschlossene Tasks: 12 von 12
+Alle Tasks wurden durchgeführt.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 0
+
+Programm beendet.
