@@ -1,0 +1,80 @@
+HarborSim – Hafensimulation
+3 Schiffe und 20 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 2
+
+=== Übersicht ===
+Start: Montag, 23.11.2026 06:00
+Docks: 3
+Schiffe, sortiert nach Länge:
+  #4 Seaside Spirit, 156 m lang, 23,5 m breit, 5,9 m Tiefgang, Passagierschiff mit 420 Passagieren
+  #5 Ocean Dream, 180 m lang, 25 m breit, 6,5 m Tiefgang, Passagierschiff mit 1500 Passagieren
+  #6 Grand Horizon, 316 m lang, 44,6 m breit, 8,9 m Tiefgang, Passagierschiff mit 3200 Passagieren
+Mitarbeiter:
+  #21 Adrian (DockWorker, Expert)
+  #22 Bianca (DockWorker, Qualified)
+  #23 Caleb (DockWorker, Qualified)
+  #24 Diana (DockWorker, Qualified)
+  #25 Elias (DockWorker, Beginner)
+  #26 Freya (DockWorker, Beginner)
+  #27 Gabriel (DockWorker, Beginner)
+  #28 Helena (DockWorker, Beginner)
+  #29 Isaac (DockWorker, Beginner)
+  #30 Linda (Pilot, Qualified)
+  #31 Martin (Pilot, Expert)
+  #32 Nora (CraneOperator, Expert)
+  #33 Oliver (CraneOperator, Beginner)
+  #34 Petra (CraneOperator, Beginner)
+  #35 Samuel (CraneOperator, Qualified)
+  #36 Tina (PassengerCoordinator, Expert)
+  #37 Ulrich (PassengerCoordinator, Beginner)
+  #38 Thomas (PassengerCoordinator, Beginner)
+  #39 Vera (PassengerCoordinator, Beginner)
+  #40 Jana (PassengerCoordinator, Beginner)
+
+=== Simulation ===
+06:00  START  Docking   | Seaside Spirit | 06:00-06:30 | Linda, Elias, Freya, Gabriel
+       -> Seaside Spirit liegt an Dock 1
+06:00  START  Docking   | Ocean Dream | 06:00-06:30 | Martin, Helena, Isaac, Bianca
+       -> Ocean Dream liegt an Dock 2
+06:30  ENDE   Docking   | Seaside Spirit | 06:00-06:30 | Linda, Elias, Freya, Gabriel
+06:30  ENDE   Docking   | Ocean Dream | 06:00-06:30 | Martin, Helena, Isaac, Bianca
+06:30  START  Loading   | Seaside Spirit | 06:30-06:54 | Elias, Freya, Gabriel, Adrian, Ulrich
+06:30  START  Docking   | Grand Horizon | 06:30-07:00 | Martin, Helena, Isaac, Bianca
+       -> Grand Horizon liegt an Dock 3
+06:54  ENDE   Loading   | Seaside Spirit | 06:30-06:54 | Elias, Freya, Gabriel, Adrian, Ulrich
+       -> Seaside Spirit: 420 Passagiere an Bord
+06:54  START  Undocking | Seaside Spirit | 06:54-07:14 | Linda, Elias, Freya, Gabriel
+07:00  ENDE   Docking   | Grand Horizon | 06:30-07:00 | Martin, Helena, Isaac, Bianca
+07:00  START  Loading   | Ocean Dream | 07:00-07:45 | Helena, Isaac, Bianca, Adrian, Ulrich, Tina
+07:14  ENDE   Undocking | Seaside Spirit | 06:54-07:14 | Linda, Elias, Freya, Gabriel
+       -> Dock 1 ist wieder frei
+07:45  ENDE   Loading   | Ocean Dream | 07:00-07:45 | Helena, Isaac, Bianca, Adrian, Ulrich, Tina
+       -> Ocean Dream: 1500 Passagiere an Bord
+07:45  START  Undocking | Ocean Dream | 07:45-08:05 | Linda, Elias, Freya, Gabriel
+08:05  ENDE   Undocking | Ocean Dream | 07:45-08:05 | Linda, Elias, Freya, Gabriel
+       -> Dock 2 ist wieder frei
+08:05  START  Loading   | Grand Horizon | 08:05-09:24 | Martin, Elias, Freya, Gabriel, Helena, Isaac, Bianca, Adrian, Ulrich, Thomas, Vera, Jana, Tina
+09:24  ENDE   Loading   | Grand Horizon | 08:05-09:24 | Martin, Elias, Freya, Gabriel, Helena, Isaac, Bianca, Adrian, Ulrich, Thomas, Vera, Jana, Tina
+       -> Grand Horizon: 3200 Passagiere an Bord
+09:24  START  Undocking | Grand Horizon | 09:24-09:44 | Martin, Elias, Freya, Gabriel
+09:44  ENDE   Undocking | Grand Horizon | 09:24-09:44 | Martin, Elias, Freya, Gabriel
+       -> Dock 3 ist wieder frei
+
+=== Zusammenfassung ===
+Ende der Simulation: Montag, 23.11.2026 09:44
+Dauer: 3 h 44 min
+Abgeschlossene Tasks: 9 von 9
+Alle Tasks wurden durchgeführt.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 0
+
+Programm beendet.

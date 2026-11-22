@@ -1,0 +1,21 @@
+diff --git a/HarborSim/Program.cs b/HarborSim/Program.cs
+index f7265d6..7822d91 100644
+--- a/HarborSim/Program.cs
++++ b/HarborSim/Program.cs
+@@ -405,11 +405,13 @@ namespace HarborSim
+             // Val1: Container bzw. Passagiere. Weitere Spalten (Val2, ...) werden ignoriert.
+             int val1 = ParseInt(parts[5], "Val1");
+ 
+-            switch (type)
++            // ToLower macht alles klein (Python: type.lower()), damit "cargo", "CARGO"
++            // und "Cargo" gleich behandelt werden
++            switch (type.ToLower())
+             {
+-                case "Cargo":
++                case "cargo":
+                     return new CargoShip(name, length, beam, draft, val1);
+-                case "Passenger":
++                case "passenger":
+                     return new PassengerShip(name, length, beam, draft, val1);
+                 default:
+                     throw new FormatException($"unbekannter Schiffstyp \"{type}\"");

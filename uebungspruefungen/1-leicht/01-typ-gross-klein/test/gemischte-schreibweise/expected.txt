@@ -1,0 +1,92 @@
+Zeile 6 in ships.csv übersprungen: unbekannter Schiffstyp "Tanker"
+HarborSim – Hafensimulation
+4 Schiffe und 20 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 2
+Zeile 6 in ships.csv übersprungen: unbekannter Schiffstyp "Tanker"
+
+=== Übersicht ===
+Start: Montag, 23.11.2026 06:00
+Docks: 3
+Schiffe, sortiert nach Länge:
+  #5 Baltic Venture, 92 m lang, 16,2 m breit, 5,4 m Tiefgang, Frachtschiff mit 120 Containern
+  #6 Coastal Breeze, 108 m lang, 18,2 m breit, 4,8 m Tiefgang, Passagierschiff mit 160 Passagieren
+  #7 Silver Mariner, 146 m lang, 22,8 m breit, 7,1 m Tiefgang, Frachtschiff mit 340 Containern
+  #8 Seaside Spirit, 156 m lang, 23,5 m breit, 5,9 m Tiefgang, Passagierschiff mit 420 Passagieren
+Mitarbeiter:
+  #21 Adrian (DockWorker, Expert)
+  #22 Bianca (DockWorker, Qualified)
+  #23 Caleb (DockWorker, Qualified)
+  #24 Diana (DockWorker, Qualified)
+  #25 Elias (DockWorker, Beginner)
+  #26 Freya (DockWorker, Beginner)
+  #27 Gabriel (DockWorker, Beginner)
+  #28 Helena (DockWorker, Beginner)
+  #29 Isaac (DockWorker, Beginner)
+  #30 Linda (Pilot, Qualified)
+  #31 Martin (Pilot, Expert)
+  #32 Nora (CraneOperator, Expert)
+  #33 Oliver (CraneOperator, Beginner)
+  #34 Petra (CraneOperator, Beginner)
+  #35 Samuel (CraneOperator, Qualified)
+  #36 Tina (PassengerCoordinator, Expert)
+  #37 Ulrich (PassengerCoordinator, Beginner)
+  #38 Thomas (PassengerCoordinator, Beginner)
+  #39 Vera (PassengerCoordinator, Beginner)
+  #40 Jana (PassengerCoordinator, Beginner)
+
+=== Simulation ===
+06:00  START  Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+       -> Baltic Venture liegt an Dock 1
+06:00  START  Docking   | Coastal Breeze | 06:00-06:30 | Linda, Helena, Isaac, Bianca
+       -> Coastal Breeze liegt an Dock 2
+06:00  START  Docking   | Silver Mariner | 06:00-06:30 | Martin, Caleb, Diana, Adrian
+       -> Silver Mariner liegt an Dock 3
+06:30  ENDE   Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+06:30  ENDE   Docking   | Coastal Breeze | 06:00-06:30 | Linda, Helena, Isaac, Bianca
+06:30  ENDE   Docking   | Silver Mariner | 06:00-06:30 | Martin, Caleb, Diana, Adrian
+06:30  START  Loading   | Baltic Venture | 06:30-07:12 | Elias, Bianca, Oliver
+06:30  START  Loading   | Coastal Breeze | 06:30-06:49 | Freya, Gabriel, Caleb, Ulrich
+06:30  START  Loading   | Silver Mariner | 06:30-07:34 | Helena, Isaac, Diana, Petra
+06:49  ENDE   Loading   | Coastal Breeze | 06:30-06:49 | Freya, Gabriel, Caleb, Ulrich
+       -> Coastal Breeze: 160 Passagiere an Bord
+06:49  START  Undocking | Coastal Breeze | 06:49-07:09 | Linda, Freya, Gabriel, Caleb
+07:09  ENDE   Undocking | Coastal Breeze | 06:49-07:09 | Linda, Freya, Gabriel, Caleb
+       -> Dock 2 ist wieder frei
+07:09  START  Docking   | Seaside Spirit | 07:09-07:39 | Linda, Freya, Gabriel, Caleb
+       -> Seaside Spirit liegt an Dock 2
+07:12  ENDE   Loading   | Baltic Venture | 06:30-07:12 | Elias, Bianca, Oliver
+       -> Baltic Venture: 120 Container verladen
+07:12  START  Undocking | Baltic Venture | 07:12-07:32 | Elias, Bianca, Adrian
+07:32  ENDE   Undocking | Baltic Venture | 07:12-07:32 | Elias, Bianca, Adrian
+       -> Dock 1 ist wieder frei
+07:34  ENDE   Loading   | Silver Mariner | 06:30-07:34 | Helena, Isaac, Diana, Petra
+       -> Silver Mariner: 340 Container verladen
+07:34  START  Undocking | Silver Mariner | 07:34-07:54 | Martin, Elias, Helena, Isaac
+07:39  ENDE   Docking   | Seaside Spirit | 07:09-07:39 | Linda, Freya, Gabriel, Caleb
+07:39  START  Loading   | Seaside Spirit | 07:39-08:03 | Freya, Gabriel, Bianca, Adrian, Ulrich
+07:54  ENDE   Undocking | Silver Mariner | 07:34-07:54 | Martin, Elias, Helena, Isaac
+       -> Dock 3 ist wieder frei
+08:03  ENDE   Loading   | Seaside Spirit | 07:39-08:03 | Freya, Gabriel, Bianca, Adrian, Ulrich
+       -> Seaside Spirit: 420 Passagiere an Bord
+08:03  START  Undocking | Seaside Spirit | 08:03-08:23 | Linda, Elias, Freya, Gabriel
+08:23  ENDE   Undocking | Seaside Spirit | 08:03-08:23 | Linda, Elias, Freya, Gabriel
+       -> Dock 2 ist wieder frei
+
+=== Zusammenfassung ===
+Ende der Simulation: Montag, 23.11.2026 08:23
+Dauer: 2 h 23 min
+Abgeschlossene Tasks: 12 von 12
+Alle Tasks wurden durchgeführt.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 0
+
+Programm beendet.

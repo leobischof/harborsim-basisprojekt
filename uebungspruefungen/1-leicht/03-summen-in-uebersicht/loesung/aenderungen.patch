@@ -1,0 +1,62 @@
+diff --git a/HarborSim/Ships/CargoShip.cs b/HarborSim/Ships/CargoShip.cs
+index 2814502..ca23bb7 100644
+--- a/HarborSim/Ships/CargoShip.cs
++++ b/HarborSim/Ships/CargoShip.cs
+@@ -10,6 +10,12 @@ namespace HarborSim
+         // Anzahl der Container, kommt aus Val1 in ships.csv
+         private int _containerNumber;
+ 
++        // Nur lesen, damit Harbor die Container zusammenzählen kann
++        public int ContainerNumber
++        {
++            get { return _containerNumber; }
++        }
++
+         // ": base(...)" ruft zuerst den Konstruktor von Ship auf (Python: super().__init__(...))
+         public CargoShip(string name, double length, double beam, double draft, int containerNumber)
+             : base(name, length, beam, draft)
+diff --git a/HarborSim/Ships/PassengerShip.cs b/HarborSim/Ships/PassengerShip.cs
+index 127c8d9..ed99ceb 100644
+--- a/HarborSim/Ships/PassengerShip.cs
++++ b/HarborSim/Ships/PassengerShip.cs
+@@ -10,6 +10,12 @@ namespace HarborSim
+         // Anzahl der Passagiere, kommt aus Val1 in ships.csv
+         private int _passengerNumber;
+ 
++        // Nur lesen, damit Harbor die Passagiere zusammenzählen kann
++        public int PassengerNumber
++        {
++            get { return _passengerNumber; }
++        }
++
+         public PassengerShip(string name, double length, double beam, double draft, int passengerNumber)
+             : base(name, length, beam, draft)
+         {
+diff --git a/HarborSim/Simulation/Harbor.cs b/HarborSim/Simulation/Harbor.cs
+index 03178d1..4a02905 100644
+--- a/HarborSim/Simulation/Harbor.cs
++++ b/HarborSim/Simulation/Harbor.cs
+@@ -65,6 +65,23 @@ namespace HarborSim
+             {
+                 Console.WriteLine("  " + ship.GetDescription());
+             }
++
++            // Summen: "is" prüft den echten Typ (Python: isinstance), der Cast holt die Property
++            int containers = 0;
++            int passengers = 0;
++            foreach (Ship ship in _ships)
++            {
++                if (ship is CargoShip)
++                {
++                    containers += ((CargoShip)ship).ContainerNumber;
++                }
++                else if (ship is PassengerShip)
++                {
++                    passengers += ((PassengerShip)ship).PassengerNumber;
++                }
++            }
++            Console.WriteLine($"Container gesamt: {containers}");
++            Console.WriteLine($"Passagiere gesamt: {passengers}");
+             Console.WriteLine("Mitarbeiter:");
+             // GetDescription endet schon mit einem Zeilenumbruch -> Write statt WriteLine
+             Console.Write(StaffPool.GetDescription());

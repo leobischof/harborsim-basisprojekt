@@ -7,6 +7,8 @@ Das ist das Basisprojekt für die Prüfung: fertig, lauffähig und für einen Py
   Download über *Code → Download ZIP*. Der Branch wird bei jedem Push auf `main` automatisch neu erzeugt.
 - **Übungen** zu UE03 bis UE07: [ingenieurinformatik-2-uebungen](https://github.com/leobischof/ingenieurinformatik-2-uebungen)
 - **Fachbegriffe** Englisch ↔ Deutsch ↔ Python: [GLOSSARY.md](GLOSSARY.md)
+- **Übungsprüfungen** zum Erweiterungsteil (10–25 min, mit Tests und Musterlösung):
+  [uebungspruefungen/](uebungspruefungen/README.md)
 
 > Die Angabe (PDF, Klassendiagramm, Flowcharts) ist urheberrechtlich geschützt (© TU Graz) und
 > deshalb nicht im Repo. Unten steht sie in eigenen Worten.
@@ -25,6 +27,8 @@ Tests (PowerShell): `./tests/run-tests.ps1`. Das Skript baut das Programm, spiel
 Liegen im Szenario-Ordner eigene `ships.csv`/`workers.csv`, ersetzen sie für diesen Lauf die normalen
 Daten; `fehlende-dateien.txt` listet Daten-Dateien, die vorher gelöscht werden (siehe `kaputte-csv`,
 `fehlende-datei`).
+Mit `-Projekt <Ordner>` und `-Szenarien <Ordner>` testet das Skript eine andere Projektkopie bzw. andere
+Szenarien; das nutzt `uebungspruefungen/pruefe-loesung.ps1`.
 
 Kommentarfreie Fassung lokal erzeugen: `python tools/strip_comments.py ../harborsim-ohne-kommentare`
 
@@ -43,7 +47,8 @@ harborsim-basisprojekt/
 │   ├── Staff/                ← SkillType, SkillLevel, Worker, SkillMatrix, StaffPool
 │   └── Simulation/           ← TaskType, Task, Harbor
 ├── tests/                    ← run-tests.ps1 + ein Ordner pro Szenario
-└── tools/                    ← strip_comments.py, check_syntax_index.py
+├── uebungspruefungen/        ← Übungsaufgaben zum Erweiterungsteil, je Angabe, Test, Lösungs-Patch
+└── tools/                    ← strip_comments.py, check_syntax_index.py, make_pdf.py
 ```
 
 Ein Namespace `HarborSim`, eine Klasse bzw. ein Enum pro Datei, Ordner nach Fachbereich.
