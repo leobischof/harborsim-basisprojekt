@@ -23,6 +23,11 @@ namespace HarborSim
         // Konstruktor (Python: __init__)
         public Worker(string name, SkillType skillType, SkillLevel skillLevel)
         {
+            // Zuerst prüfen, dann die ID vergeben -> ein ungültiger Worker verbraucht keine ID
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("Der Name eines Mitarbeiters darf nicht leer sein.");
+            }
             Id = _nextId;
             _nextId++;
             Name = name;

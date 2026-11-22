@@ -1,0 +1,219 @@
+HarborSim – Hafensimulation
+10 Schiffe und 20 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: abc
+Ungültige Eingabe, bitte eine Zahl von 0 bis 2 eingeben.
+Auswahl: 7
+Ungültige Eingabe, bitte eine Zahl von 0 bis 2 eingeben.
+Auswahl: 
+Ungültige Eingabe, bitte eine Zahl von 0 bis 2 eingeben.
+Auswahl: 1
+
+=== Verfügbarkeit ändern ===
+1  Mitarbeiter
+2  Schiffe
+3  Docks (aktuell 3)
+0  Zurück
+Auswahl: -1
+Ungültige Eingabe, bitte eine Zahl von 0 bis 3 eingeben.
+Auswahl: 3
+Anzahl der Docks (1-10): 0
+Ungültige Eingabe, bitte eine Zahl von 1 bis 10 eingeben.
+Anzahl der Docks (1-10): 11
+Ungültige Eingabe, bitte eine Zahl von 1 bis 10 eingeben.
+Anzahl der Docks (1-10): 2,5
+Ungültige Eingabe, bitte eine Zahl von 1 bis 10 eingeben.
+Anzahl der Docks (1-10): 2
+
+=== Verfügbarkeit ändern ===
+1  Mitarbeiter
+2  Schiffe
+3  Docks (aktuell 2)
+0  Zurück
+Auswahl: 1
+
+=== Mitarbeiter ===
+ 1  Adrian (DockWorker, Expert) – verfügbar
+ 2  Bianca (DockWorker, Qualified) – verfügbar
+ 3  Caleb (DockWorker, Qualified) – verfügbar
+ 4  Diana (DockWorker, Qualified) – verfügbar
+ 5  Elias (DockWorker, Beginner) – verfügbar
+ 6  Freya (DockWorker, Beginner) – verfügbar
+ 7  Gabriel (DockWorker, Beginner) – verfügbar
+ 8  Helena (DockWorker, Beginner) – verfügbar
+ 9  Isaac (DockWorker, Beginner) – verfügbar
+10  Linda (Pilot, Qualified) – verfügbar
+11  Martin (Pilot, Expert) – verfügbar
+12  Nora (CraneOperator, Expert) – verfügbar
+13  Oliver (CraneOperator, Beginner) – verfügbar
+14  Petra (CraneOperator, Beginner) – verfügbar
+15  Samuel (CraneOperator, Qualified) – verfügbar
+16  Tina (PassengerCoordinator, Expert) – verfügbar
+17  Ulrich (PassengerCoordinator, Beginner) – verfügbar
+18  Thomas (PassengerCoordinator, Beginner) – verfügbar
+19  Vera (PassengerCoordinator, Beginner) – verfügbar
+20  Jana (PassengerCoordinator, Beginner) – verfügbar
+Nummer zum Umschalten (0 = zurück): 21
+Ungültige Eingabe, bitte eine Zahl von 0 bis 20 eingeben.
+Nummer zum Umschalten (0 = zurück): zehn
+Ungültige Eingabe, bitte eine Zahl von 0 bis 20 eingeben.
+Nummer zum Umschalten (0 = zurück): 0
+
+=== Verfügbarkeit ändern ===
+1  Mitarbeiter
+2  Schiffe
+3  Docks (aktuell 2)
+0  Zurück
+Auswahl: 0
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 2
+
+=== Übersicht ===
+Start: Montag, 23.11.2026 06:00
+Docks: 2
+Schiffe, sortiert nach Länge:
+  #11 Baltic Venture, 92 m lang, 16,2 m breit, 5,4 m Tiefgang, Frachtschiff mit 120 Containern
+  #16 Coastal Breeze, 108 m lang, 18,2 m breit, 4,8 m Tiefgang, Passagierschiff mit 160 Passagieren
+  #12 Silver Mariner, 146 m lang, 22,8 m breit, 7,1 m Tiefgang, Frachtschiff mit 340 Containern
+  #17 Seaside Spirit, 156 m lang, 23,5 m breit, 5,9 m Tiefgang, Passagierschiff mit 420 Passagieren
+  #13 Emerald Trader, 194 m lang, 28,7 m breit, 8,8 m Tiefgang, Frachtschiff mit 650 Containern
+  #18 Royal Voyager, 214 m lang, 29,8 m breit, 7 m Tiefgang, Passagierschiff mit 900 Passagieren
+  #14 Oceanic Horizon, 244 m lang, 34,8 m breit, 10,4 m Tiefgang, Frachtschiff mit 1100 Containern
+  #19 Northern Crown, 268 m lang, 37,4 m breit, 8,1 m Tiefgang, Passagierschiff mit 1800 Passagieren
+  #15 Grand Meridian, 292 m lang, 42,6 m breit, 12,1 m Tiefgang, Frachtschiff mit 1800 Containern
+  #20 Grand Horizon, 316 m lang, 44,6 m breit, 8,9 m Tiefgang, Passagierschiff mit 3200 Passagieren
+Mitarbeiter:
+  #21 Adrian (DockWorker, Expert)
+  #22 Bianca (DockWorker, Qualified)
+  #23 Caleb (DockWorker, Qualified)
+  #24 Diana (DockWorker, Qualified)
+  #25 Elias (DockWorker, Beginner)
+  #26 Freya (DockWorker, Beginner)
+  #27 Gabriel (DockWorker, Beginner)
+  #28 Helena (DockWorker, Beginner)
+  #29 Isaac (DockWorker, Beginner)
+  #30 Linda (Pilot, Qualified)
+  #31 Martin (Pilot, Expert)
+  #32 Nora (CraneOperator, Expert)
+  #33 Oliver (CraneOperator, Beginner)
+  #34 Petra (CraneOperator, Beginner)
+  #35 Samuel (CraneOperator, Qualified)
+  #36 Tina (PassengerCoordinator, Expert)
+  #37 Ulrich (PassengerCoordinator, Beginner)
+  #38 Thomas (PassengerCoordinator, Beginner)
+  #39 Vera (PassengerCoordinator, Beginner)
+  #40 Jana (PassengerCoordinator, Beginner)
+
+=== Simulation ===
+06:00  START  Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+       -> Baltic Venture liegt an Dock 1
+06:00  START  Docking   | Silver Mariner | 06:00-06:30 | Linda, Helena, Isaac, Bianca
+       -> Silver Mariner liegt an Dock 2
+06:30  ENDE   Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+06:30  ENDE   Docking   | Silver Mariner | 06:00-06:30 | Linda, Helena, Isaac, Bianca
+06:30  START  Loading   | Baltic Venture | 06:30-07:12 | Elias, Bianca, Oliver
+06:30  START  Loading   | Silver Mariner | 06:30-07:34 | Freya, Gabriel, Caleb, Petra
+07:12  ENDE   Loading   | Baltic Venture | 06:30-07:12 | Elias, Bianca, Oliver
+       -> Baltic Venture: 120 Container verladen
+07:12  START  Undocking | Baltic Venture | 07:12-07:32 | Elias, Helena, Isaac
+07:32  ENDE   Undocking | Baltic Venture | 07:12-07:32 | Elias, Helena, Isaac
+       -> Dock 1 ist wieder frei
+07:32  START  Docking   | Emerald Trader | 07:32-08:02 | Linda, Elias, Helena, Isaac
+       -> Emerald Trader liegt an Dock 1
+07:34  ENDE   Loading   | Silver Mariner | 06:30-07:34 | Freya, Gabriel, Caleb, Petra
+       -> Silver Mariner: 340 Container verladen
+07:34  START  Undocking | Silver Mariner | 07:34-07:54 | Martin, Freya, Gabriel, Bianca
+07:54  ENDE   Undocking | Silver Mariner | 07:34-07:54 | Martin, Freya, Gabriel, Bianca
+       -> Dock 2 ist wieder frei
+07:54  START  Docking   | Oceanic Horizon | 07:54-08:24 | Martin, Freya, Gabriel, Bianca
+       -> Oceanic Horizon liegt an Dock 2
+08:02  ENDE   Docking   | Emerald Trader | 07:32-08:02 | Linda, Elias, Helena, Isaac
+08:02  START  Loading   | Emerald Trader | 08:02-09:37 | Elias, Helena, Isaac, Adrian, Oliver, Samuel
+08:24  ENDE   Docking   | Oceanic Horizon | 07:54-08:24 | Martin, Freya, Gabriel, Bianca
+09:37  ENDE   Loading   | Emerald Trader | 08:02-09:37 | Elias, Helena, Isaac, Adrian, Oliver, Samuel
+       -> Emerald Trader: 650 Container verladen
+09:37  START  Undocking | Emerald Trader | 09:37-09:57 | Linda, Elias, Freya, Gabriel
+09:37  START  Loading   | Oceanic Horizon | 09:37-11:57 | Helena, Isaac, Bianca, Caleb, Adrian, Oliver, Petra, Nora
+09:57  ENDE   Undocking | Emerald Trader | 09:37-09:57 | Linda, Elias, Freya, Gabriel
+       -> Dock 1 ist wieder frei
+09:57  START  Docking   | Grand Meridian | 09:57-10:27 | Martin, Elias, Freya, Gabriel
+       -> Grand Meridian liegt an Dock 1
+10:27  ENDE   Docking   | Grand Meridian | 09:57-10:27 | Martin, Elias, Freya, Gabriel
+11:57  ENDE   Loading   | Oceanic Horizon | 09:37-11:57 | Helena, Isaac, Bianca, Caleb, Adrian, Oliver, Petra, Nora
+       -> Oceanic Horizon: 1100 Container verladen
+11:57  START  Undocking | Oceanic Horizon | 11:57-12:17 | Martin, Elias, Freya, Gabriel
+12:17  ENDE   Undocking | Oceanic Horizon | 11:57-12:17 | Martin, Elias, Freya, Gabriel
+       -> Dock 2 ist wieder frei
+12:17  START  Docking   | Coastal Breeze | 12:17-12:47 | Linda, Elias, Freya, Gabriel
+       -> Coastal Breeze liegt an Dock 2
+12:47  ENDE   Docking   | Coastal Breeze | 12:17-12:47 | Linda, Elias, Freya, Gabriel
+12:47  START  Loading   | Coastal Breeze | 12:47-13:06 | Elias, Freya, Bianca, Ulrich
+13:06  ENDE   Loading   | Coastal Breeze | 12:47-13:06 | Elias, Freya, Bianca, Ulrich
+       -> Coastal Breeze: 160 Passagiere an Bord
+13:06  START  Undocking | Coastal Breeze | 13:06-13:26 | Linda, Elias, Freya, Gabriel
+13:26  ENDE   Undocking | Coastal Breeze | 13:06-13:26 | Linda, Elias, Freya, Gabriel
+       -> Dock 2 ist wieder frei
+13:26  START  Docking   | Seaside Spirit | 13:26-13:56 | Linda, Elias, Freya, Gabriel
+       -> Seaside Spirit liegt an Dock 2
+13:56  ENDE   Docking   | Seaside Spirit | 13:26-13:56 | Linda, Elias, Freya, Gabriel
+13:56  START  Loading   | Seaside Spirit | 13:56-14:20 | Elias, Freya, Gabriel, Adrian, Ulrich
+14:20  ENDE   Loading   | Seaside Spirit | 13:56-14:20 | Elias, Freya, Gabriel, Adrian, Ulrich
+       -> Seaside Spirit: 420 Passagiere an Bord
+14:20  START  Undocking | Seaside Spirit | 14:20-14:40 | Linda, Elias, Freya, Gabriel
+14:40  ENDE   Undocking | Seaside Spirit | 14:20-14:40 | Linda, Elias, Freya, Gabriel
+       -> Dock 2 ist wieder frei
+14:40  START  Docking   | Royal Voyager | 14:40-15:10 | Martin, Elias, Freya, Gabriel
+       -> Royal Voyager liegt an Dock 2
+15:10  ENDE   Docking   | Royal Voyager | 14:40-15:10 | Martin, Elias, Freya, Gabriel
+15:10  START  Loading   | Royal Voyager | 15:10-15:43 | Elias, Freya, Gabriel, Helena, Adrian, Ulrich, Thomas
+15:43  ENDE   Loading   | Royal Voyager | 15:10-15:43 | Elias, Freya, Gabriel, Helena, Adrian, Ulrich, Thomas
+       -> Royal Voyager: 900 Passagiere an Bord
+15:43  START  Undocking | Royal Voyager | 15:43-16:03 | Martin, Elias, Freya, Gabriel
+16:03  ENDE   Undocking | Royal Voyager | 15:43-16:03 | Martin, Elias, Freya, Gabriel
+       -> Dock 2 ist wieder frei
+16:03  START  Docking   | Northern Crown | 16:03-16:33 | Martin, Elias, Freya, Gabriel
+       -> Northern Crown liegt an Dock 2
+16:33  ENDE   Docking   | Northern Crown | 16:03-16:33 | Martin, Elias, Freya, Gabriel
+16:33  START  Loading   | Northern Crown | 16:33-17:24 | Elias, Freya, Gabriel, Helena, Isaac, Adrian, Ulrich, Thomas, Tina
+17:24  ENDE   Loading   | Northern Crown | 16:33-17:24 | Elias, Freya, Gabriel, Helena, Isaac, Adrian, Ulrich, Thomas, Tina
+       -> Northern Crown: 1800 Passagiere an Bord
+17:24  START  Undocking | Northern Crown | 17:24-17:44 | Martin, Elias, Freya, Gabriel
+17:44  ENDE   Undocking | Northern Crown | 17:24-17:44 | Martin, Elias, Freya, Gabriel
+       -> Dock 2 ist wieder frei
+17:44  START  Docking   | Grand Horizon | 17:44-18:14 | Martin, Elias, Freya, Gabriel
+       -> Grand Horizon liegt an Dock 2
+18:14  ENDE   Docking   | Grand Horizon | 17:44-18:14 | Martin, Elias, Freya, Gabriel
+18:14  START  Loading   | Grand Horizon | 18:14-19:33 | Elias, Freya, Gabriel, Helena, Isaac, Bianca, Adrian, Ulrich, Thomas, Vera, Jana, Tina
+19:33  ENDE   Loading   | Grand Horizon | 18:14-19:33 | Elias, Freya, Gabriel, Helena, Isaac, Bianca, Adrian, Ulrich, Thomas, Vera, Jana, Tina
+       -> Grand Horizon: 3200 Passagiere an Bord
+19:33  START  Undocking | Grand Horizon | 19:33-19:53 | Martin, Elias, Freya, Gabriel
+19:53  ENDE   Undocking | Grand Horizon | 19:33-19:53 | Martin, Elias, Freya, Gabriel
+       -> Dock 2 ist wieder frei
+
+Simulation blockiert: Keiner der offenen Tasks kann gestartet werden.
+Nicht durchführbare Tasks:
+  Loading   | Grand Meridian
+  Undocking | Grand Meridian
+
+=== Zusammenfassung ===
+Ende der Simulation: Montag, 23.11.2026 19:53
+Dauer: 13 h 53 min
+Abgeschlossene Tasks: 28 von 30
+Nicht durchgeführte Tasks: 2 (Liste siehe oben)
+Noch angedockt: Grand Meridian
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 
+
+Programm beendet.

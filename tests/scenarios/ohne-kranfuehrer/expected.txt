@@ -1,0 +1,233 @@
+HarborSim – Hafensimulation
+10 Schiffe und 20 Mitarbeiter eingelesen.
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 1
+
+=== Verfügbarkeit ändern ===
+1  Mitarbeiter
+2  Schiffe
+3  Docks (aktuell 3)
+0  Zurück
+Auswahl: 1
+
+=== Mitarbeiter ===
+ 1  Adrian (DockWorker, Expert) – verfügbar
+ 2  Bianca (DockWorker, Qualified) – verfügbar
+ 3  Caleb (DockWorker, Qualified) – verfügbar
+ 4  Diana (DockWorker, Qualified) – verfügbar
+ 5  Elias (DockWorker, Beginner) – verfügbar
+ 6  Freya (DockWorker, Beginner) – verfügbar
+ 7  Gabriel (DockWorker, Beginner) – verfügbar
+ 8  Helena (DockWorker, Beginner) – verfügbar
+ 9  Isaac (DockWorker, Beginner) – verfügbar
+10  Linda (Pilot, Qualified) – verfügbar
+11  Martin (Pilot, Expert) – verfügbar
+12  Nora (CraneOperator, Expert) – verfügbar
+13  Oliver (CraneOperator, Beginner) – verfügbar
+14  Petra (CraneOperator, Beginner) – verfügbar
+15  Samuel (CraneOperator, Qualified) – verfügbar
+16  Tina (PassengerCoordinator, Expert) – verfügbar
+17  Ulrich (PassengerCoordinator, Beginner) – verfügbar
+18  Thomas (PassengerCoordinator, Beginner) – verfügbar
+19  Vera (PassengerCoordinator, Beginner) – verfügbar
+20  Jana (PassengerCoordinator, Beginner) – verfügbar
+Nummer zum Umschalten (0 = zurück): 12
+
+=== Mitarbeiter ===
+ 1  Adrian (DockWorker, Expert) – verfügbar
+ 2  Bianca (DockWorker, Qualified) – verfügbar
+ 3  Caleb (DockWorker, Qualified) – verfügbar
+ 4  Diana (DockWorker, Qualified) – verfügbar
+ 5  Elias (DockWorker, Beginner) – verfügbar
+ 6  Freya (DockWorker, Beginner) – verfügbar
+ 7  Gabriel (DockWorker, Beginner) – verfügbar
+ 8  Helena (DockWorker, Beginner) – verfügbar
+ 9  Isaac (DockWorker, Beginner) – verfügbar
+10  Linda (Pilot, Qualified) – verfügbar
+11  Martin (Pilot, Expert) – verfügbar
+12  Nora (CraneOperator, Expert) – nicht verfügbar
+13  Oliver (CraneOperator, Beginner) – verfügbar
+14  Petra (CraneOperator, Beginner) – verfügbar
+15  Samuel (CraneOperator, Qualified) – verfügbar
+16  Tina (PassengerCoordinator, Expert) – verfügbar
+17  Ulrich (PassengerCoordinator, Beginner) – verfügbar
+18  Thomas (PassengerCoordinator, Beginner) – verfügbar
+19  Vera (PassengerCoordinator, Beginner) – verfügbar
+20  Jana (PassengerCoordinator, Beginner) – verfügbar
+Nummer zum Umschalten (0 = zurück): 13
+
+=== Mitarbeiter ===
+ 1  Adrian (DockWorker, Expert) – verfügbar
+ 2  Bianca (DockWorker, Qualified) – verfügbar
+ 3  Caleb (DockWorker, Qualified) – verfügbar
+ 4  Diana (DockWorker, Qualified) – verfügbar
+ 5  Elias (DockWorker, Beginner) – verfügbar
+ 6  Freya (DockWorker, Beginner) – verfügbar
+ 7  Gabriel (DockWorker, Beginner) – verfügbar
+ 8  Helena (DockWorker, Beginner) – verfügbar
+ 9  Isaac (DockWorker, Beginner) – verfügbar
+10  Linda (Pilot, Qualified) – verfügbar
+11  Martin (Pilot, Expert) – verfügbar
+12  Nora (CraneOperator, Expert) – nicht verfügbar
+13  Oliver (CraneOperator, Beginner) – nicht verfügbar
+14  Petra (CraneOperator, Beginner) – verfügbar
+15  Samuel (CraneOperator, Qualified) – verfügbar
+16  Tina (PassengerCoordinator, Expert) – verfügbar
+17  Ulrich (PassengerCoordinator, Beginner) – verfügbar
+18  Thomas (PassengerCoordinator, Beginner) – verfügbar
+19  Vera (PassengerCoordinator, Beginner) – verfügbar
+20  Jana (PassengerCoordinator, Beginner) – verfügbar
+Nummer zum Umschalten (0 = zurück): 14
+
+=== Mitarbeiter ===
+ 1  Adrian (DockWorker, Expert) – verfügbar
+ 2  Bianca (DockWorker, Qualified) – verfügbar
+ 3  Caleb (DockWorker, Qualified) – verfügbar
+ 4  Diana (DockWorker, Qualified) – verfügbar
+ 5  Elias (DockWorker, Beginner) – verfügbar
+ 6  Freya (DockWorker, Beginner) – verfügbar
+ 7  Gabriel (DockWorker, Beginner) – verfügbar
+ 8  Helena (DockWorker, Beginner) – verfügbar
+ 9  Isaac (DockWorker, Beginner) – verfügbar
+10  Linda (Pilot, Qualified) – verfügbar
+11  Martin (Pilot, Expert) – verfügbar
+12  Nora (CraneOperator, Expert) – nicht verfügbar
+13  Oliver (CraneOperator, Beginner) – nicht verfügbar
+14  Petra (CraneOperator, Beginner) – nicht verfügbar
+15  Samuel (CraneOperator, Qualified) – verfügbar
+16  Tina (PassengerCoordinator, Expert) – verfügbar
+17  Ulrich (PassengerCoordinator, Beginner) – verfügbar
+18  Thomas (PassengerCoordinator, Beginner) – verfügbar
+19  Vera (PassengerCoordinator, Beginner) – verfügbar
+20  Jana (PassengerCoordinator, Beginner) – verfügbar
+Nummer zum Umschalten (0 = zurück): 15
+
+=== Mitarbeiter ===
+ 1  Adrian (DockWorker, Expert) – verfügbar
+ 2  Bianca (DockWorker, Qualified) – verfügbar
+ 3  Caleb (DockWorker, Qualified) – verfügbar
+ 4  Diana (DockWorker, Qualified) – verfügbar
+ 5  Elias (DockWorker, Beginner) – verfügbar
+ 6  Freya (DockWorker, Beginner) – verfügbar
+ 7  Gabriel (DockWorker, Beginner) – verfügbar
+ 8  Helena (DockWorker, Beginner) – verfügbar
+ 9  Isaac (DockWorker, Beginner) – verfügbar
+10  Linda (Pilot, Qualified) – verfügbar
+11  Martin (Pilot, Expert) – verfügbar
+12  Nora (CraneOperator, Expert) – nicht verfügbar
+13  Oliver (CraneOperator, Beginner) – nicht verfügbar
+14  Petra (CraneOperator, Beginner) – nicht verfügbar
+15  Samuel (CraneOperator, Qualified) – nicht verfügbar
+16  Tina (PassengerCoordinator, Expert) – verfügbar
+17  Ulrich (PassengerCoordinator, Beginner) – verfügbar
+18  Thomas (PassengerCoordinator, Beginner) – verfügbar
+19  Vera (PassengerCoordinator, Beginner) – verfügbar
+20  Jana (PassengerCoordinator, Beginner) – verfügbar
+Nummer zum Umschalten (0 = zurück): 0
+
+=== Verfügbarkeit ändern ===
+1  Mitarbeiter
+2  Schiffe
+3  Docks (aktuell 3)
+0  Zurück
+Auswahl: 0
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 2
+
+=== Übersicht ===
+Start: Montag, 23.11.2026 06:00
+Docks: 3
+Schiffe, sortiert nach Länge:
+  #11 Baltic Venture, 92 m lang, 16,2 m breit, 5,4 m Tiefgang, Frachtschiff mit 120 Containern
+  #16 Coastal Breeze, 108 m lang, 18,2 m breit, 4,8 m Tiefgang, Passagierschiff mit 160 Passagieren
+  #12 Silver Mariner, 146 m lang, 22,8 m breit, 7,1 m Tiefgang, Frachtschiff mit 340 Containern
+  #17 Seaside Spirit, 156 m lang, 23,5 m breit, 5,9 m Tiefgang, Passagierschiff mit 420 Passagieren
+  #13 Emerald Trader, 194 m lang, 28,7 m breit, 8,8 m Tiefgang, Frachtschiff mit 650 Containern
+  #18 Royal Voyager, 214 m lang, 29,8 m breit, 7 m Tiefgang, Passagierschiff mit 900 Passagieren
+  #14 Oceanic Horizon, 244 m lang, 34,8 m breit, 10,4 m Tiefgang, Frachtschiff mit 1100 Containern
+  #19 Northern Crown, 268 m lang, 37,4 m breit, 8,1 m Tiefgang, Passagierschiff mit 1800 Passagieren
+  #15 Grand Meridian, 292 m lang, 42,6 m breit, 12,1 m Tiefgang, Frachtschiff mit 1800 Containern
+  #20 Grand Horizon, 316 m lang, 44,6 m breit, 8,9 m Tiefgang, Passagierschiff mit 3200 Passagieren
+Mitarbeiter:
+  #21 Adrian (DockWorker, Expert)
+  #22 Bianca (DockWorker, Qualified)
+  #23 Caleb (DockWorker, Qualified)
+  #24 Diana (DockWorker, Qualified)
+  #25 Elias (DockWorker, Beginner)
+  #26 Freya (DockWorker, Beginner)
+  #27 Gabriel (DockWorker, Beginner)
+  #28 Helena (DockWorker, Beginner)
+  #29 Isaac (DockWorker, Beginner)
+  #30 Linda (Pilot, Qualified)
+  #31 Martin (Pilot, Expert)
+  #36 Tina (PassengerCoordinator, Expert)
+  #37 Ulrich (PassengerCoordinator, Beginner)
+  #38 Thomas (PassengerCoordinator, Beginner)
+  #39 Vera (PassengerCoordinator, Beginner)
+  #40 Jana (PassengerCoordinator, Beginner)
+
+=== Simulation ===
+06:00  START  Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+       -> Baltic Venture liegt an Dock 1
+06:00  START  Docking   | Silver Mariner | 06:00-06:30 | Linda, Helena, Isaac, Bianca
+       -> Silver Mariner liegt an Dock 2
+06:00  START  Docking   | Emerald Trader | 06:00-06:30 | Martin, Caleb, Diana, Adrian
+       -> Emerald Trader liegt an Dock 3
+06:30  ENDE   Docking   | Baltic Venture | 06:00-06:30 | Elias, Freya, Gabriel
+06:30  ENDE   Docking   | Silver Mariner | 06:00-06:30 | Linda, Helena, Isaac, Bianca
+06:30  ENDE   Docking   | Emerald Trader | 06:00-06:30 | Martin, Caleb, Diana, Adrian
+
+Simulation blockiert: Keiner der offenen Tasks kann gestartet werden.
+Nicht durchführbare Tasks:
+  Loading   | Baltic Venture
+  Undocking | Baltic Venture
+  Loading   | Silver Mariner
+  Undocking | Silver Mariner
+  Loading   | Emerald Trader
+  Undocking | Emerald Trader
+  Docking   | Oceanic Horizon
+  Loading   | Oceanic Horizon
+  Undocking | Oceanic Horizon
+  Docking   | Grand Meridian
+  Loading   | Grand Meridian
+  Undocking | Grand Meridian
+  Docking   | Coastal Breeze
+  Loading   | Coastal Breeze
+  Undocking | Coastal Breeze
+  Docking   | Seaside Spirit
+  Loading   | Seaside Spirit
+  Undocking | Seaside Spirit
+  Docking   | Royal Voyager
+  Loading   | Royal Voyager
+  Undocking | Royal Voyager
+  Docking   | Northern Crown
+  Loading   | Northern Crown
+  Undocking | Northern Crown
+  Docking   | Grand Horizon
+  Loading   | Grand Horizon
+  Undocking | Grand Horizon
+
+=== Zusammenfassung ===
+Ende der Simulation: Montag, 23.11.2026 06:30
+Dauer: 0 h 30 min
+Abgeschlossene Tasks: 3 von 30
+Nicht durchgeführte Tasks: 27 (Liste siehe oben)
+Noch angedockt: Baltic Venture
+Noch angedockt: Silver Mariner
+Noch angedockt: Emerald Trader
+
+=== Hauptmenü ===
+1  Verfügbarkeit ändern
+2  Simulation starten
+0  Beenden
+Auswahl: 0
+
+Programm beendet.

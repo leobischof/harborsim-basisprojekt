@@ -14,6 +14,10 @@ namespace HarborSim
         public CargoShip(string name, double length, double beam, double draft, int containerNumber)
             : base(name, length, beam, draft)
         {
+            if (containerNumber < 0)
+            {
+                throw new ArgumentException($"{name}: Die Anzahl der Container darf nicht negativ sein.");
+            }
             _containerNumber = containerNumber;
         }
 

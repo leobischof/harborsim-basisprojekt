@@ -35,6 +35,15 @@ namespace HarborSim
         // protected = nur diese Klasse und abgeleitete Klassen dürfen den Konstruktor aufrufen
         protected Ship(string name, double length, double beam, double draft)
         {
+            // Erst prüfen, dann zuweisen. throw beendet den Konstruktor sofort, das Objekt entsteht nicht.
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("Der Name eines Schiffs darf nicht leer sein.");
+            }
+            if (length <= 0 || beam <= 0 || draft <= 0)
+            {
+                throw new ArgumentException($"{name}: Länge, Breite und Tiefgang müssen größer als 0 sein.");
+            }
             Id = _nextId;
             _nextId++;
             Name = name;

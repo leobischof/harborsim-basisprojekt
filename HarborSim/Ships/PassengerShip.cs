@@ -13,6 +13,10 @@ namespace HarborSim
         public PassengerShip(string name, double length, double beam, double draft, int passengerNumber)
             : base(name, length, beam, draft)
         {
+            if (passengerNumber < 0)
+            {
+                throw new ArgumentException($"{name}: Die Anzahl der Passagiere darf nicht negativ sein.");
+            }
             _passengerNumber = passengerNumber;
         }
 

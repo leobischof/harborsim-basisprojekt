@@ -8,7 +8,8 @@ using System.Text;
 namespace HarborSim
 {
     // Einstiegspunkt der Anwendung (Python: if __name__ == "__main__":)
-    // Program liest die CSV-Dateien, zeigt das Menü, erstellt den Hafen und startet die Simulation.
+    // Program liest die CSV-Dateien ein, zeigt das Menü, verwaltet die Verfügbarkeit
+    // und startet die Simulation (so steht es im Klassendiagramm).
     internal class Program
     {
         // Die CSV-Dateien werden beim Build neben die .exe kopiert (siehe HarborSim.csproj)
@@ -17,6 +18,8 @@ namespace HarborSim
 
         private const int DefaultDockCount = 3;
         private const int MaxDockCount = 10;
+        // Rückgabewert von ReadNumber, wenn keine Eingabe mehr kommt (Datei zu Ende, Strg+Z)
+        private const int EndOfInput = -1;
 
         // Einstellungen aus dem Menü. "static", weil Program nie als Objekt erzeugt wird.
         // Die Listen dienen nur der Anzeige im Menü (Nummer -> Name).
@@ -35,8 +38,8 @@ namespace HarborSim
             CultureInfo.CurrentCulture = new CultureInfo("de-AT");
 
             _startTime = GetStartTime(args);
-            _menuShips = LoadShips();
-            _menuWorkers = LoadWorkers();
+            _menuShips = LoadShips(ShipsPath);
+            _menuWorkers = LoadWorkers(WorkersPath);
             // Am Anfang sind alle verfügbar
             foreach (Ship ship in _menuShips)
             {
@@ -59,7 +62,8 @@ namespace HarborSim
                 Console.WriteLine("2  Simulation starten");
                 Console.WriteLine("0  Beenden");
 
-                switch (ReadNumber("Auswahl: "))
+                // ReadNumber liefert nur 0, 1, 2 oder EndOfInput -> kein default nötig
+                switch (ReadNumber("Auswahl: ", 0, 2))
                 {
                     case 1:
                         ChangeAvailability();
@@ -68,12 +72,8 @@ namespace HarborSim
                         RunSimulation();
                         break;
                     case 0:
-                    case -1:
+                    case EndOfInput:
                         running = false;
-                        break;
-                    default:
-                        Console.WriteLine();
-                        Console.WriteLine("Ungültige Auswahl.");
                         break;
                 }
             }
@@ -82,21 +82,23 @@ namespace HarborSim
             Console.WriteLine("Programm beendet.");
         }
 
-        // Startzeit: Datum aus dem Argument (yyyy-MM-dd) oder nächster Werktag, jeweils 06:00.
+        // Startzeit: Datum aus dem Argument (yyyy-MM-dd) oder folgender Werktag, jeweils 06:00.
         // Das Argument macht die Tests reproduzierbar.
         private static DateTime GetStartTime(string[] args)
         {
+            DateTime date;
             if (args.Length > 0)
             {
-                return DateTime.ParseExact(args[0], "yyyy-MM-dd", CultureInfo.InvariantCulture).AddHours(6);
+                if (DateTime.TryParseExact(args[0], "yyyy-MM-dd", CultureInfo.InvariantCulture,
+                    DateTimeStyles.None, out date))
+                {
+                    return date.AddHours(6);
+                }
+                Console.WriteLine($"Ungültiges Startdatum \"{args[0]}\" (Format yyyy-MM-dd), nehme den folgenden Werktag.");
             }
 
-            // Heute 06:00, falls das noch bevorsteht, sonst ab morgen weitersuchen
-            DateTime start = DateTime.Today.AddHours(6);
-            if (start <= DateTime.Now)
-            {
-                start = start.AddDays(1);
-            }
+            // Laut Angabe immer ab dem folgenden Tag; fällt der auf ein Wochenende, weiter bis Montag
+            DateTime start = DateTime.Today.AddDays(1).AddHours(6);
             while (start.DayOfWeek == DayOfWeek.Saturday || start.DayOfWeek == DayOfWeek.Sunday)
             {
                 start = start.AddDays(1);
@@ -104,22 +106,33 @@ namespace HarborSim
             return start;
         }
 
-        // Liest eine Zahl ein. Ende der Eingabe (null, z. B. Datei zu Ende) -> -1.
-        private static int ReadNumber(string prompt)
+        // Fragt so lange nach, bis eine ganze Zahl von min bis max eingegeben wird.
+        // Keine Eingabe mehr (null) -> EndOfInput, damit das Programm sauber endet.
+        private static int ReadNumber(string prompt, int min, int max)
         {
-            Console.Write(prompt);
-            string line = Console.ReadLine();
-            if (line == null)
+            while (true)
             {
-                Console.WriteLine();
-                return -1;
+                Console.Write(prompt);
+                string line = Console.ReadLine();
+                if (line == null)
+                {
+                    Console.WriteLine();
+                    return EndOfInput;
+                }
+                // Kommt die Eingabe aus einer Datei (Tests), sieht man sie sonst nicht in der Ausgabe
+                if (Console.IsInputRedirected)
+                {
+                    Console.WriteLine(line);
+                }
+
+                // TryParse statt Parse: bei "abc" kein Absturz, sondern false
+                int number;
+                if (int.TryParse(line.Trim(), out number) && number >= min && number <= max)
+                {
+                    return number;
+                }
+                Console.WriteLine($"Ungültige Eingabe, bitte eine Zahl von {min} bis {max} eingeben.");
             }
-            // Kommt die Eingabe aus einer Datei (Tests), sieht man sie sonst nicht in der Ausgabe
-            if (Console.IsInputRedirected)
-            {
-                Console.WriteLine(line);
-            }
-            return int.Parse(line.Trim());
         }
 
         // Untermenü: Mitarbeiter, Schiffe oder Docks ändern.
@@ -134,7 +147,7 @@ namespace HarborSim
                 Console.WriteLine($"3  Docks (aktuell {_dockCount})");
                 Console.WriteLine("0  Zurück");
 
-                switch (ReadNumber("Auswahl: "))
+                switch (ReadNumber("Auswahl: ", 0, 3))
                 {
                     case 1:
                         ToggleWorkers();
@@ -146,12 +159,8 @@ namespace HarborSim
                         ChangeDockCount();
                         break;
                     case 0:
-                    case -1:
+                    case EndOfInput:
                         return;
-                    default:
-                        Console.WriteLine();
-                        Console.WriteLine("Ungültige Auswahl.");
-                        break;
                 }
             }
         }
@@ -199,16 +208,10 @@ namespace HarborSim
                     Console.WriteLine($"{i + 1,2}  {labels[i]} – {status}");
                 }
 
-                int number = ReadNumber("Nummer zum Umschalten (0 = zurück): ");
-                if (number <= 0)
+                int number = ReadNumber("Nummer zum Umschalten (0 = zurück): ", 0, names.Count);
+                if (number == 0 || number == EndOfInput)
                 {
                     return;
-                }
-                if (number > names.Count)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("Ungültige Nummer.");
-                    continue;
                 }
                 string name = names[number - 1];
                 available[name] = !available[name];
@@ -217,11 +220,9 @@ namespace HarborSim
 
         private static void ChangeDockCount()
         {
-            int count = ReadNumber($"Anzahl der Docks (1-{MaxDockCount}): ");
-            if (count < 1 || count > MaxDockCount)
+            int count = ReadNumber($"Anzahl der Docks (1-{MaxDockCount}): ", 1, MaxDockCount);
+            if (count == EndOfInput)
             {
-                Console.WriteLine();
-                Console.WriteLine("Ungültige Anzahl, die Docks bleiben unverändert.");
                 return;
             }
             _dockCount = count;
@@ -233,18 +234,18 @@ namespace HarborSim
         private static void RunSimulation()
         {
             List<Ship> ships = new List<Ship>();
-            foreach (Ship ship in LoadShips())
+            foreach (Ship ship in LoadShips(ShipsPath))
             {
-                if (_shipAvailable[ship.Name])
+                if (IsAvailable(_shipAvailable, ship.Name))
                 {
                     ships.Add(ship);
                 }
             }
 
             List<Worker> workers = new List<Worker>();
-            foreach (Worker worker in LoadWorkers())
+            foreach (Worker worker in LoadWorkers(WorkersPath))
             {
-                if (_workerAvailable[worker.Name])
+                if (IsAvailable(_workerAvailable, worker.Name))
                 {
                     workers.Add(worker);
                 }
@@ -255,12 +256,18 @@ namespace HarborSim
             harbor.Run();
         }
 
+        // Wer erst nach dem Programmstart in die CSV geschrieben wurde, ist im Dictionary
+        // nicht enthalten. ContainsKey verhindert dann eine KeyNotFoundException.
+        private static bool IsAvailable(Dictionary<string, bool> available, string name)
+        {
+            return available.ContainsKey(name) && available[name];
+        }
+
         // Liest ships.csv: Name,Type,Length,Beam,Draft,Val1[,Val2,...]
-        private static List<Ship> LoadShips()
+        private static List<Ship> LoadShips(string path)
         {
             List<Ship> ships = new List<Ship>();
-            // Alle Zeilen auf einmal lesen (Python: open(path).read().splitlines())
-            string[] lines = File.ReadAllLines(ShipsPath);
+            string[] lines = ReadLines(path);
 
             // Bei 1 starten = Kopfzeile überspringen
             for (int i = 1; i < lines.Length; i++)
@@ -269,9 +276,75 @@ namespace HarborSim
                 {
                     continue;
                 }
-                ships.Add(ParseShip(lines[i]));
+                // try/catch (Python: try/except): eine kaputte Zeile soll nicht alles abbrechen
+                try
+                {
+                    ships.Add(ParseShip(lines[i]));
+                }
+                catch (FormatException e)
+                {
+                    PrintSkippedLine(path, i, e.Message);
+                }
+                catch (ArgumentException e)
+                {
+                    PrintSkippedLine(path, i, e.Message);
+                }
             }
             return ships;
+        }
+
+        // Liest workers.csv: Name,SkillType,SkillLevel
+        private static List<Worker> LoadWorkers(string path)
+        {
+            List<Worker> workers = new List<Worker>();
+            string[] lines = ReadLines(path);
+
+            for (int i = 1; i < lines.Length; i++)
+            {
+                if (string.IsNullOrWhiteSpace(lines[i]))
+                {
+                    continue;
+                }
+                try
+                {
+                    workers.Add(ParseWorker(lines[i]));
+                }
+                catch (FormatException e)
+                {
+                    PrintSkippedLine(path, i, e.Message);
+                }
+                catch (ArgumentException e)
+                {
+                    PrintSkippedLine(path, i, e.Message);
+                }
+            }
+            return workers;
+        }
+
+        // Alle Zeilen auf einmal lesen (Python: open(path).read().splitlines()).
+        // Fehlt die Datei oder ist sie nicht lesbar -> Meldung und leeres Array.
+        private static string[] ReadLines(string path)
+        {
+            try
+            {
+                return File.ReadAllLines(path);
+            }
+            // IOException deckt auch FileNotFoundException und DirectoryNotFoundException ab
+            catch (IOException e)
+            {
+                Console.WriteLine($"Fehler: {Path.GetFileName(path)} konnte nicht gelesen werden ({e.Message})");
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                Console.WriteLine($"Fehler: {Path.GetFileName(path)} konnte nicht gelesen werden ({e.Message})");
+            }
+            return new string[0];
+        }
+
+        // Zeilennummer wie im Editor: Index 0 ist Zeile 1 (die Kopfzeile)
+        private static void PrintSkippedLine(string path, int index, string reason)
+        {
+            Console.WriteLine($"Zeile {index + 1} in {Path.GetFileName(path)} übersprungen: {reason}");
         }
 
         // Macht aus einer CSV-Zeile das passende Schiffsobjekt.
@@ -279,15 +352,18 @@ namespace HarborSim
         {
             // Split teilt am Komma (Python: line.split(","))
             string[] parts = line.Split(',');
+            if (parts.Length < 6)
+            {
+                throw new FormatException("zu wenige Spalten (erwartet: Name,Type,Length,Beam,Draft,Val1)");
+            }
 
             string name = parts[0].Trim();
             string type = parts[1].Trim();
-            // InvariantCulture = Punkt ist immer Dezimaltrennzeichen, egal welche Spracheinstellung
-            double length = double.Parse(parts[2], CultureInfo.InvariantCulture);
-            double beam = double.Parse(parts[3], CultureInfo.InvariantCulture);
-            double draft = double.Parse(parts[4], CultureInfo.InvariantCulture);
+            double length = ParseDouble(parts[2], "Length");
+            double beam = ParseDouble(parts[3], "Beam");
+            double draft = ParseDouble(parts[4], "Draft");
             // Val1: Container bzw. Passagiere. Weitere Spalten (Val2, ...) werden ignoriert.
-            int val1 = int.Parse(parts[5], CultureInfo.InvariantCulture);
+            int val1 = ParseInt(parts[5], "Val1");
 
             switch (type)
             {
@@ -300,36 +376,56 @@ namespace HarborSim
             }
         }
 
-        // Liest workers.csv: Name,SkillType,SkillLevel
-        private static List<Worker> LoadWorkers()
-        {
-            List<Worker> workers = new List<Worker>();
-            string[] lines = File.ReadAllLines(WorkersPath);
-
-            for (int i = 1; i < lines.Length; i++)
-            {
-                if (string.IsNullOrWhiteSpace(lines[i]))
-                {
-                    continue;
-                }
-                workers.Add(ParseWorker(lines[i]));
-            }
-            return workers;
-        }
-
         // Macht aus einer CSV-Zeile einen Worker.
         private static Worker ParseWorker(string line)
         {
             string[] parts = line.Split(',');
+            if (parts.Length < 3)
+            {
+                throw new FormatException("zu wenige Spalten (erwartet: Name,SkillType,SkillLevel)");
+            }
 
             string name = parts[0].Trim();
+            string typeText = parts[1].Trim();
+            // IsDefined prüft, ob es diesen Namen im enum gibt (Python: name in SkillType.__members__)
+            if (!Enum.IsDefined(typeof(SkillType), typeText))
+            {
+                throw new FormatException($"unbekannter Skilltyp \"{typeText}\"");
+            }
             // Text -> enum-Wert, z. B. "DockWorker" -> SkillType.DockWorker
-            SkillType skillType = (SkillType)Enum.Parse(typeof(SkillType), parts[1].Trim());
+            SkillType skillType = (SkillType)Enum.Parse(typeof(SkillType), typeText);
+
+            int level = ParseInt(parts[2], "SkillLevel");
+            if (!Enum.IsDefined(typeof(SkillLevel), level))
+            {
+                throw new FormatException($"unbekanntes Level {level} (erlaubt: 0, 1, 2)");
+            }
             // Zahl -> enum-Wert, z. B. 2 -> SkillLevel.Expert
-            int level = int.Parse(parts[2], CultureInfo.InvariantCulture);
             SkillLevel skillLevel = (SkillLevel)level;
 
             return new Worker(name, skillType, skillLevel);
+        }
+
+        // Kommazahl mit Punkt als Dezimaltrennzeichen, egal welche Spracheinstellung (InvariantCulture).
+        // TryParse wirft keine Exception, sondern liefert false (Python: try: float(text) except ValueError).
+        private static double ParseDouble(string text, string column)
+        {
+            double value;
+            if (!double.TryParse(text.Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out value))
+            {
+                throw new FormatException($"{column} \"{text.Trim()}\" ist keine Zahl");
+            }
+            return value;
+        }
+
+        private static int ParseInt(string text, string column)
+        {
+            int value;
+            if (!int.TryParse(text.Trim(), NumberStyles.Integer, CultureInfo.InvariantCulture, out value))
+            {
+                throw new FormatException($"{column} \"{text.Trim()}\" ist keine ganze Zahl");
+            }
+            return value;
         }
     }
 }
